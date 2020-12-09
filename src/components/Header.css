@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: #007c40;
+  width: 48px;
+  margin-right: 3px;
+}
+
+.menuIcon {
+  padding: 6.5px;
+  margin: 15px;
+  border: solid 1px #707070;
+  border-radius: 50%;
+}
+
+.userIcon {
+  margin: 15px;
+}
+
+.title {
+  display: inline-block;
+  font-family: HiraKakuProN-W3;
+  font-size: 25px;
+  font-weight: normal;
+  line-height: 1.72;
+  color: #707070;
+}
+
+.menuIcon, .logo, .title, .userIcon {
+  vertical-align: middle;
+}
