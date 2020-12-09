@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   const history = useHistory();
   return (
     <div className="header">
-      <IconButton>
+      <IconButton >
         <MenuIcon fontSize="large" />
       </IconButton>
 
