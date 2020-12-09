@@ -3,7 +3,6 @@ import React from "react";
 import { Card } from "./Card";
 import "./Home.css";
 import { trendMockData } from "../util/mock";
-
 const Home: React.FC = () => {
   return (
     <div className="home">
