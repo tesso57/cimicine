@@ -33,7 +33,7 @@ const Header: React.FC = () => {
         <MenuIcon fontSize="large" />
       </IconButton>
 
-      <div className="logoAndTitle" onClick={() => history.push("/about")}>
+      <div className="logoAndTitle" onClick={() => history.push("/")}>
         <svg viewBox="0 0 500 500" className="logo">
           <use xlinkHref={`${logo}#logo`} />
         </svg>

@@ -1,0 +1,28 @@
+.makeNewLoadMapContent {
+    margin-left: 16px;
+    margin-top: 16px;
+}
+
+.heading {
+    margin-top: 44px;
+    margin-bottom: 89px;
+    margin-left: 4px;
+    font-size: 24px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.title-inputField {
+    width: 50%;
+}
+
+.input-textField {
+    margin-right: 23px;
+    margin-bottom: 16px;
+}
+

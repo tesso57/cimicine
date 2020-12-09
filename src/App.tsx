@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import SignUp from "./auth/SignUp";
 import Header from "./components/Header";
 import EditRoadmap from "./components/EditRoadmap";
+import MakeNewLoadMap from "./components/MakeNewLoadMap";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
             <Route exact path={"/signin"} component={SignIn} />
             <Route exact path={"/signup"} component={SignUp} />
             <Route exact path={"/edit"} component={EditRoadmap} />
+            <Route exact path={"/create"} component={MakeNewLoadMap} />
           </Switch>
         </Router>
       </AuthProvider>
