@@ -24,3 +24,11 @@ yarn-error.log*
 .eslintcache
 .vscode/settings.json
 .idea/
+
+# firebase
+.firebaserc
+.firebase
+firestore.rules
+src/webhookConfig.js
+src/firebase/config.ts
+src_class/firebase/config.js
