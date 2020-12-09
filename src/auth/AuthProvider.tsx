@@ -4,14 +4,14 @@ import {auth} from "../firebase/index";
 
 interface Props {
     signup: (email: string, password: string, history: H.History) => void
-    login: (email: string, password: string, history: H.History) => void
+    signin: (email: string, password: string, history: H.History) => void
     currentUser:null | object
 }
 
 const AuthContext = React.createContext<Props>({
         signup: async (email: string, password: string, history: H.History) => {
         },
-        login: async (email: string, password: string, history: H.History) => {
+        signin: async (email: string, password: string, history: H.History) => {
         },
         currentUser:null
     }
@@ -32,7 +32,7 @@ const AuthProvider: React.FC = ({children}) => {
     };
 
     //login関数
-    const login = async (email: string, password: string, history: H.History) => {
+    const signin = async (email: string, password: string, history: H.History) => {
         try {
             await auth.signInWithEmailAndPassword(email, password);
             auth.onAuthStateChanged(user => setCurrentUser(user));
@@ -47,7 +47,7 @@ const AuthProvider: React.FC = ({children}) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{signup, login, currentUser}}>
+        <AuthContext.Provider value={{signup, signin, currentUser}}>
             {children}
         </AuthContext.Provider>
     )

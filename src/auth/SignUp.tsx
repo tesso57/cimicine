@@ -25,9 +25,9 @@ const SignUp = ({history}:any) => {
                     <label>Password</label>
                     <input name={"password"} type={"password"} placeholder={"password"}/>
                 </div>
-                <input type={"submit"} value={"Sign In"}/>
+                <input type={"submit"} value={"Sign Up"}/>
             </form>
-            <Link to={"/login"}> Sign In</Link>
+            <Link to={"/signin"}> Sign In</Link>
         </div>
     )
 }
