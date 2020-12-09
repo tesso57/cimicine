@@ -1,7 +1,7 @@
 import React ,{useContext} from "react"
 import {Route} from "react-router-dom";
 import {AuthContext} from "./AuthProvider";
-import Login from "./Login";
+import SignIn from "./SignIn";
 
 interface Props {
     component:React.FC
@@ -11,7 +11,7 @@ interface Props {
 const PrivateRoute = ({component,...rest}:Props) => {
     console.log("Hello")
     const {currentUser} = useContext(AuthContext);
-    const renderingComponent = currentUser ? component : Login;
+    const renderingComponent = currentUser ? component : SignIn;
     return(
         <Route {...rest} component={renderingComponent}/>
     )

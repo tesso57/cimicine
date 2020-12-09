@@ -4,13 +4,13 @@ import {Link} from "react-router-dom"
 import {AuthContext} from "./AuthProvider";
 import "firebase/auth"
 
-const Login = ({history}:any) => {
+const SignIn = ({history}:any) => {
     console.log("login")
-    const {login} = useContext(AuthContext)
+    const {signin} = useContext(AuthContext)
     const handleSubmit = (event: any) => {
         event.preventDefault()
         const {email, password} = event.target;
-        login(email.value, password.value, history)
+        signin(email.value, password.value, history)
     };
 
     return (
@@ -32,4 +32,4 @@ const Login = ({history}:any) => {
     )
 }
 
-export default withRouter(Login);
+export default withRouter(SignIn);
