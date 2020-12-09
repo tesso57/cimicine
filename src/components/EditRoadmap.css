@@ -1,0 +1,30 @@
+.nav {
+  background-color: var(--cimicine-main);
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.nav > h1 {
+  font-size: 20px;
+  margin-left: 32px;
+}
+.edgePoint {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0 24px;
+  padding: 16px 24px;
+  border: 1px solid #707070;
+  border-radius: 2px;
+  margin-top: 32px;
+}
+p {
+  font-weight: bold;
+}
+.border {
+  border-left: 3px solid black;
+  opacity: 0.54;
+  min-height: 80vh;
+  margin-left: 55px;
+}

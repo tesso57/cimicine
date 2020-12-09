@@ -7,6 +7,7 @@ import PrivateRoute from "./auth/PrivateRoute";
 import Home from "./components/Home";
 import SignUp from "./auth/SignUp";
 import Header from "./components/Header";
+import EditRoadmap from "./components/EditRoadmap";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
             <PrivateRoute exact path={"/"} component={Home} />
             <Route exact path={"/signin"} component={SignIn} />
             <Route exact path={"/signup"} component={SignUp} />
+            <Route exact path={"/edit"} component={EditRoadmap} />
           </Switch>
         </Router>
       </AuthProvider>
