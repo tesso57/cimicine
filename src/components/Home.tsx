@@ -2,39 +2,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
 import { Card } from "./Card";
 import "./Home.css";
+import { trendMockData } from "../util/mock";
 
-const trendMockData = [
-  {
-    title: "Frontend Developer Roadmap",
-    star: 999999,
-    caption:
-      "Step by step guide to becoming a modern frontend developer in 2020",
-  },
-  {
-    title: "Frontend Developer Roadmap",
-    star: 999999,
-    caption:
-      "Step by step guide to becoming a modern frontend developer in 2020",
-  },
-  {
-    title: "Frontend Developer Roadmap",
-    star: 999999,
-    caption:
-      "Step by step guide to becoming a modern frontend developer in 2020",
-  },
-  {
-    title: "Frontend Developer Roadmap",
-    star: 999999,
-    caption:
-      "Step by step guide to becoming a modern frontend developer in 2020",
-  },
-  {
-    title: "Frontend Developer Roadmap",
-    star: 999999,
-    caption:
-      "Step by step guide to becoming a modern frontend developer in 2020",
-  },
-];
 const Home: React.FC = () => {
   return (
     <div className="home">
