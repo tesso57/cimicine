@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.MuiIconButton-root {
+  margin: 4px !important;
+}
+.logo {
+  color: var(--cimicine-main);
+  width: 48px;
+  margin-right: 3px;
+}
+.title {
+  display: inline-block;
+  font-family: HiraKakuProN-W3;
+  font-size: 25px;
+  font-weight: normal;
+  line-height: 1.72;
+  color: #707070;
+}
+
+.menuIcon,
+.logo,
+.title,
+.userIcon {
+  vertical-align: middle;
+}
