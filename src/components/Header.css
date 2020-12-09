@@ -10,12 +10,14 @@
 .MuiIconButton-root {
   margin: 4px !important;
 }
-.logo {
+
+.header .logo {
   color: var(--cimicine-main);
   width: 48px;
   margin-right: 3px;
 }
-.title {
+
+.header .title {
   display: inline-block;
   font-family: HiraKakuProN-W3;
   font-size: 25px;
@@ -25,8 +27,8 @@
 }
 
 .menuIcon,
-.logo,
-.title,
+.header .logo,
+.header .title,
 .userIcon {
   vertical-align: middle;
 }
@@ -34,4 +36,60 @@
 .header__menu {
   background-color: white;
   width: 60vw;
+}
+
+.header__menu .logo {
+  color: var(--cimicine-main);
+  width: 60%;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 14px;
+}
+
+.createButton {
+  width: 30%;
+  font-size: 16px;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 54px;
+  border-radius: 2px;
+  border: solid 1px #ffffff;
+  background-color: #007c40;
+}
+
+.createMapsIcon {
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
+.buttonContent {
+  display: table;
+  margin: 0 auto;
+}
+
+.createButton span {
+  margin-right: 12px;
+}
+
+.createButton {
+  margin: 30px auto;
+}
+
+.partition {
+  width: 90%;
+  margin: 40px auto;
+}
+
+.hotMaps,
+.searchMaps {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.hotMapsIcon,
+.searchMapsIcon {
+  vertical-align: middle;
+  margin-right: 5px;
 }
