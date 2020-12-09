@@ -30,3 +30,8 @@
 .userIcon {
   vertical-align: middle;
 }
+
+.header__menu {
+  background-color: white;
+  width: 60vw;
+}

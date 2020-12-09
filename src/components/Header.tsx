@@ -8,7 +8,7 @@ import { IconButton, Drawer } from "@material-ui/core";
 
 import { useHistory } from "react-router";
 const Menu: React.FC = () => {
-  return <></>;
+  return <div className="header__menu"></div>;
 };
 
 const Header: React.FC = () => {
