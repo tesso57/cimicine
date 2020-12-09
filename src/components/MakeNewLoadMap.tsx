@@ -15,6 +15,12 @@ import {useHistory} from "react-router-dom";
 const MakeNewLoadMap: React.FC = () => {
     const history = useHistory();
 
+    const handleSubmit = (event: any) => {
+        event.preventDefault()
+        const {title, description} = event.target.elements;
+        console.log(title.value,description.value);
+    };
+
     const theme = createMuiTheme({
         palette: {
             primary: green,
@@ -25,11 +31,11 @@ const MakeNewLoadMap: React.FC = () => {
             <IconButton onClick={() => history.push('/')}>
                 <KeyboardBackspaceSharpIcon fontSize="large"/>
             </IconButton>
-            <div className={"makeNewLoadMapContent"}>
+            <form onSubmit={handleSubmit} className={"makeNewLoadMapContent"}>
                 <div className={"heading"}>新しいロードマップを作成する</div>
                 <div className={"input-textField"}>
                     <TextField
-                        id="outlined-password-input"
+                        id="title"
                         label="タイトル"
                         type="title"
                         autoComplete="current-password"
@@ -39,7 +45,7 @@ const MakeNewLoadMap: React.FC = () => {
                 </div>
                 <div className={"input-textField"}>
                     <TextField
-                        id="outlined-password-input"
+                        id="description"
                         label="詳細"
                         type="title"
                         autoComplete="current-password"
@@ -49,12 +55,13 @@ const MakeNewLoadMap: React.FC = () => {
                 </div>
                 <div>
                     <ThemeProvider theme={theme}>
-                        <Button variant="contained" color="primary" style={{color: 'white', marginTop: 48}}>
+                        <Button variant="contained" color="primary" style={{color: 'white', marginTop: 48}} type={"submit"}>
                             作成
                         </Button>
                     </ThemeProvider>
                 </div>
-            </div>
+            </form>
+
         </div>
     )
 }
