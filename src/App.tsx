@@ -2,10 +2,10 @@ import React from "react";
 import "./App.css";
 import {AuthProvider} from "./auth/AuthProvider";
 import { BrowserRouter as Router,Route,Switch} from "react-router-dom";
-import {SwipeableDrawer} from "@material-ui/core";
 import Login from "./auth/Login";
 import PrivateRoute from "./auth/PrivateRoute";
 import Home from "./components/Home";
+import SignUp from "./auth/SignUp";
 
 const App: React.FC = () => {
   return (
@@ -14,6 +14,7 @@ const App: React.FC = () => {
               <Switch>
                   <PrivateRoute exact path ={"/"} component={Home}/>
                   <Route exact path={"/login"} component={Login}/>
+                  <Route exact path={"/signup"} component={SignUp}/>
               </Switch>
           </Router>
       </AuthProvider>
