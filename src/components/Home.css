@@ -1,0 +1,21 @@
+.home {
+  background-color: var(--cimicine-main);
+  min-height: 100vh;
+  padding: 32px 16px 0;
+}
+.search {
+  background-color: white;
+  color: gray;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+}
+.search__input {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 16px;
+  border: none;
+  outline: none;
+}

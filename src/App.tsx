@@ -11,6 +11,7 @@ import MakeNewLoadMap from "./components/MakeNewLoadMap";
 
 const App: React.FC = () => {
     return (
+        <div className="app">
         <AuthProvider>
             <Router>
                 <Header/>
@@ -22,6 +23,7 @@ const App: React.FC = () => {
                 </Switch>
             </Router>
         </AuthProvider>
+    </div>
     );
 };
 
