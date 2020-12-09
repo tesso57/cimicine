@@ -10,8 +10,11 @@ import {
 } from '@material-ui/core/styles';
 import {green} from '@material-ui/core/colors';
 import {IconButton} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 const MakeNewLoadMap: React.FC = () => {
+    const history = useHistory();
+
     const theme = createMuiTheme({
         palette: {
             primary: green,
@@ -19,7 +22,7 @@ const MakeNewLoadMap: React.FC = () => {
     });
     return (
         <div>
-            <IconButton>
+            <IconButton onClick={() => history.push('/')}>
                 <KeyboardBackspaceSharpIcon fontSize="large"/>
             </IconButton>
             <div className={"makeNewLoadMapContent"}>
