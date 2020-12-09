@@ -8,6 +8,9 @@
   font-size: 20px;
   margin-left: 32px;
 }
+.edit {
+  display: relative;
+}
 .edgePoint {
   display: flex;
   justify-content: space-between;
@@ -17,7 +20,16 @@
   padding: 16px 24px;
   border: 1px solid #707070;
   border-radius: 2px;
+
+  background-color: white;
+}
+.begin {
   margin-top: 32px;
+}
+.finish {
+  margin: 70vh 24px 32px;
+  position: sticky;
+  bottom: 0;
 }
 p {
   font-weight: bold;
@@ -25,6 +37,23 @@ p {
 .border {
   border-left: 3px solid black;
   opacity: 0.54;
-  min-height: 80vh;
-  margin-left: 55px;
+  min-height: 70vh;
+
+  position: absolute;
+  left: 56px;
+}
+.step {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  margin: 24px 0 24px 40px;
+  padding: 0px 0;
+
+  background-color: white;
+}
+.step > p {
+  margin-left: 16px;
+  font-size: 16px;
+  font-weight: bold;
 }
