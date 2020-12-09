@@ -1,0 +1,21 @@
+.card {
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+.card:hover {
+  background-color: white;
+  opacity: 0.9;
+}
+
+.star {
+  font-size: 14px;
+  color: #191919;
+  margin-bottom: 8px;
+}
+.caption {
+  font-size: 14px;
+  opacity: 0.54;
+}

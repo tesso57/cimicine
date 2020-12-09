@@ -10,16 +10,18 @@ import Header from "./components/Header";
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <Header />
-      <Router>
-        <Switch>
-          <PrivateRoute exact path={"/"} component={Home} />
-          <Route exact path={"/signin"} component={SignIn} />
-          <Route exact path={"/signup"} component={SignUp} />
-        </Switch>
-      </Router>
-    </AuthProvider>
+    <div className="app">
+      <AuthProvider>
+        <Router>
+          <Header />
+          <Switch>
+            <PrivateRoute exact path={"/"} component={Home} />
+            <Route exact path={"/signin"} component={SignIn} />
+            <Route exact path={"/signup"} component={SignUp} />
+          </Switch>
+        </Router>
+      </AuthProvider>
+    </div>
   );
 };
 

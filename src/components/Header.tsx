@@ -5,17 +5,17 @@ import logo from "../img/logo.svg";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { IconButton } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const Header: React.FC = () => {
   const history = useHistory();
   return (
     <div className="header">
-      <IconButton>
+      <IconButton onClick={() => history.push("/about")}>
         <MenuIcon fontSize="large" />
       </IconButton>
 
-      <div className="logoAndTitle" onClick={() => history.push("/")}>
+      <div className="logoAndTitle" onClick={() => history.push("/about")}>
         <svg viewBox="0 0 500 500" className="logo">
           <use xlinkHref={`${logo}#logo`} />
         </svg>
