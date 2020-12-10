@@ -3,6 +3,9 @@ import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import "./dialog.css"
 import TextField from '@material-ui/core/TextField';
+import PlayCircleFilledSharpIcon from '@material-ui/icons/PlayCircleFilledSharp';
+import PauseCircleFilledSharpIcon from '@material-ui/icons/PauseCircleFilledSharp';
+import {IconButton} from "@material-ui/core";
 
 interface Props {
     handleClose: () => void
@@ -24,7 +27,6 @@ const Dialog = (props: Props) => {
                 aria-describedby="simple-modal-description"
             >
                 <div className={"dialog-content"}>
-
                     <div className={"dialog-title"}>
                         <TextField
                             InputProps={{
@@ -53,7 +55,11 @@ const Dialog = (props: Props) => {
                             placeholder={"Enter the Caption here..."}
                         />
                     </div>
-
+                    <div className={"dialog-icon"}>
+                        <IconButton onClick={() => console.log("pushed")} style={{color:'white'}}>
+                            <PlayCircleFilledSharpIcon fontSize="large" />
+                        </IconButton>
+                    </div>
                 </div>
             </Modal>
         </div>
