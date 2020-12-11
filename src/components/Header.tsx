@@ -12,6 +12,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Popper from "@material-ui/core/Popper";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 import { useHistory } from "react-router";
 import Dialog from "./dialog";
@@ -135,10 +136,12 @@ const Header: React.FC = () => {
             }}
           >
             <Paper>
-              <MenuList autoFocusItem={dropDownOpen} id="dropDownMenu">
-                <MenuItem onClick={handleClose}>マイページ</MenuItem>
-                <MenuItem onClick={handleClose}>ログアウト</MenuItem>
-              </MenuList>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList autoFocusItem={dropDownOpen} id="dropDownMenu">
+                  <MenuItem onClick={handleClose}>マイページ</MenuItem>
+                  <MenuItem onClick={handleClose}>ログアウト</MenuItem>
+                </MenuList>
+              </ClickAwayListener>
             </Paper>
           </Grow>
         )}
