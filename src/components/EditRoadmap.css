@@ -3,13 +3,16 @@
   color: white;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 .nav > h1 {
   font-size: 20px;
   margin-left: 32px;
 }
 .edit {
-  display: relative;
+  position: relative;
 }
 .edgePoint {
   display: flex;
@@ -23,37 +26,25 @@
 
   background-color: white;
 }
+.edgePoint > p {
+  font-weight: bold;
+}
 .begin {
   margin-top: 32px;
 }
 .finish {
-  margin: 70vh 24px 32px;
-  position: sticky;
+  margin: 0 24px;
   bottom: 0;
+  background-color: white;
+  position: relative;
+  z-index: 5;
 }
-p {
-  font-weight: bold;
-}
+
 .border {
   border-left: 3px solid black;
   opacity: 0.54;
-  min-height: 70vh;
+  height: calc(100% - 58px);
 
   position: absolute;
   left: 56px;
-}
-.step {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-
-  margin: 24px 0 24px 40px;
-  padding: 0px 0;
-
-  background-color: white;
-}
-.step > p {
-  margin-left: 16px;
-  font-size: 16px;
-  font-weight: bold;
 }

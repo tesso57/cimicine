@@ -2,11 +2,10 @@ import React from "react";
 import "./EditRoadmap.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import AssistantPhotoIcon from "@material-ui/icons/AssistantPhoto";
 import PauseIcon from "@material-ui/icons/Pause";
 import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import zIndex from "@material-ui/core/styles/zIndex";
+import Step from "./Step";
 
 interface EditRoadmapProps {
   title?: string;
@@ -17,7 +16,10 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
   setTitle,
 }) => {
   const history = useHistory();
-  const sampleText = "The First Step";
+  const [step, setStep] = React.useState("");
+  const handleOpen = (step: string) => {
+    setStep(step);
+  };
   return (
     <div>
       <div className="nav">
@@ -32,43 +34,12 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
           <PlayArrowIcon style={{ color: "var(--cimicine-main)" }} />
         </div>
         <div className="border"></div>
+        {[1, 2, 3].map((i) => {
+          const uid = (i * 0.001).toString(36).substring(6);
+          const open = uid === step;
+          return <Step open={open} onOpen={() => handleOpen(uid)} key={i} />;
+        })}
 
-        <div className="step">
-          <AssistantPhotoIcon
-            fontSize="large"
-            style={{
-              color: "var(--cimicine-main",
-              backgroundColor: "white",
-              padding: "4 0",
-              zIndex: 5,
-            }}
-          />
-          <p>{sampleText}</p>
-        </div>
-        <div className="step">
-          <AssistantPhotoIcon
-            fontSize="large"
-            style={{
-              color: "var(--cimicine-main",
-              backgroundColor: "white",
-              padding: "4 0",
-              zIndex: 5,
-            }}
-          />
-          <p>{sampleText}</p>
-        </div>
-        <div className="step">
-          <AssistantPhotoIcon
-            fontSize="large"
-            style={{
-              color: "var(--cimicine-main",
-              backgroundColor: "white",
-              padding: "4 0",
-              zIndex: 5,
-            }}
-          />
-          <p>{sampleText}</p>
-        </div>
         <div className="edgePoint finish">
           <p>{title}</p>
           <PauseIcon style={{ color: "var(--cimicine-main)" }} />

@@ -1,0 +1,99 @@
+.step {
+  display: flex;
+  justify-content: left;
+  align-items: unset;
+  margin: 30px 24px 30px 40px;
+  padding: 0px 0;
+
+  background-color: white;
+
+  max-width: 800px;
+}
+.step__accordion {
+  margin-left: 16px;
+  flex-grow: 1;
+}
+.step__title {
+  font-size: 18px;
+}
+.step__captionInput {
+  font-size: 14px;
+  color: #191919;
+  font-weight: normal;
+
+  outline: none;
+  border: none;
+
+  padding: unset;
+  margin: unset;
+
+  resize: none;
+}
+.MuiAccordionSummary-content.Mui-expanded {
+  margin: 8px 0 !important;
+}
+.MuiAccordionSummary-root.Mui-expanded {
+  min-height: 48px !important;
+}
+.step__accordion .Mui-focusVisible {
+  background-color: unset !important;
+}
+.step__titleInput {
+  outline: none;
+  border: none;
+  width: 100%;
+
+  font-size: 18px;
+}
+.step__titleInput:disabled {
+  background-color: unset;
+  color: lightgray;
+  cursor: pointer;
+}
+
+.step__bookmarkItem {
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  opacity: 0.8;
+
+  padding: 8px;
+  margin: 4px 0;
+
+  display: flex;
+  align-items: center;
+}
+.step__bookmarkIcon {
+  width: 32px;
+  object-fit: contain;
+  margin-right: 16px;
+}
+.step__bookmarkUrl {
+  font-weight: normal;
+}
+
+.step__urlInput {
+  margin-top: 10px;
+  outline: none;
+  padding: 8px;
+  border: 1px solid lightgray;
+
+  /* opacity: 0.2; */
+  border-radius: 6px;
+}
+.step__urlSubmit {
+  background-color: var(--cimicine-main);
+  color: white;
+  border: none;
+  outline: none;
+
+  margin-top: 8px;
+  padding: 6px;
+  border-radius: 6px;
+
+  font-weight: bold;
+  opacity: 0.9;
+  cursor: pointer;
+}
+.step__urlSubmit:hover {
+  opacity: 1;
+}
