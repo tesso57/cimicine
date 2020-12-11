@@ -1,0 +1,12 @@
+.footer {
+  height: 100px;
+  width: 100%;
+
+  background-color: var(--cimicine-main);
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

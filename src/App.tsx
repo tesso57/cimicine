@@ -9,6 +9,7 @@ import SignUp from "./auth/SignUp";
 import Header from "./components/Header";
 import EditRoadmap from "./components/EditRoadmap";
 import MakeNewLoadMap from "./components/MakeNewLoadMap";
+import Footer from "./components/Footer";
 
 const App: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const App: React.FC = () => {
             <Route exact path={"/edit"} component={EditRoadmap} />
             <Route exact path={"/create"} component={MakeNewLoadMap} />
           </Switch>
+          <Footer />
         </Router>
       </AuthProvider>
     </div>
