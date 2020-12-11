@@ -21,7 +21,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
     setStep(step);
   };
   return (
-    <div>
+    <div className="editRoadmap">
       <div className="nav">
         <IconButton onClick={() => history.goBack()}>
           <ArrowBackIcon style={{ color: "white" }} />
