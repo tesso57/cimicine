@@ -2,13 +2,25 @@
   display: flex;
   justify-content: left;
   align-items: unset;
-  margin: 30px 24px 30px 40px;
+  margin: 30px 24px 30px 16px;
   padding: 0px 0;
 
   background-color: white;
 
   max-width: 800px;
 }
+.step:hover .step__addIcon {
+  opacity: 0.5;
+}
+.step__addIcon {
+  opacity: 0;
+  cursor: pointer;
+  height: 24px;
+}
+.step__addIcon:hover {
+  background-color: lightgray;
+}
+
 .step__accordion {
   margin-left: 16px;
   flex-grow: 1;

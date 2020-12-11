@@ -16,10 +16,23 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
   setTitle,
 }) => {
   const history = useHistory();
-  const [step, setStep] = React.useState((1 * 0.001).toString(36).substring(6));
+
+  const uid = (index: number) => (index * 0.001).toString(36).substring(6);
+
+  const [step, setStep] = React.useState(uid(0));
   const handleOpen = (step: string) => {
     setStep(step);
   };
+
+  const [data, setData] = React.useState<number[]>([0, 1, 2]);
+  const handleAdd = (index: number) => {
+    const temp = [...data];
+    const i = temp.length;
+    temp.splice(index + 1, 0, temp.length);
+    setData(temp);
+    handleOpen(uid(i));
+  };
+
   return (
     <div className="editRoadmap">
       <div className="nav">
@@ -34,11 +47,14 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
           <PlayArrowIcon style={{ color: "var(--cimicine-main)" }} />
         </div>
         <div className="border"></div>
-        {[1, 2, 3].map((i) => {
-          const uid = (i * 0.001).toString(36).substring(6);
-          const open = uid === step;
-          return <Step open={open} onOpen={() => handleOpen(uid)} key={i} />;
-        })}
+        {data.map((i) => (
+          <Step
+            open={uid(i) === step}
+            onOpen={() => handleOpen(uid(i))}
+            key={i}
+            onAdd={() => handleAdd(i)}
+          />
+        ))}
 
         <div className="edgePoint finish">
           <p>{title}</p>
