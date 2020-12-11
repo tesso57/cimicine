@@ -31,7 +31,7 @@ const Visualizer = (props: Props) => {
 
     const printBar = (ctx: CanvasRenderingContext2D, x: number, num: number) => {
         let y = Height - BoxHeight;
-        for (let i = 0; i < num; i++) {
+        for (let i = 0; i < Math.max(num,1); i++) {
             ctx.fillRect(x, y, BoxWidth, BoxHeight);
             y -= (BoxWidth + Padding);
         }
