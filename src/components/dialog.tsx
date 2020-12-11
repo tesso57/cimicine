@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Modal from '@material-ui/core/Modal';
 import "./dialog.css"
 import TextField from '@material-ui/core/TextField';
@@ -6,6 +6,7 @@ import PlayCircleFilledSharpIcon from '@material-ui/icons/PlayCircleFilledSharp'
 import PauseCircleFilledSharpIcon from '@material-ui/icons/PauseCircleFilledSharp';
 import {IconButton} from "@material-ui/core";
 import Visualizer from "./visualizer";
+import NoteAddIcon from "@material-ui/icons/NoteAdd";
 
 interface Props {
     handleClose: () => void
@@ -16,11 +17,20 @@ interface Props {
 const Dialog = (props: Props) => {
 
     const [isStart, setStart] = useState<boolean>(false);
+    useEffect(() => {
+        if (!props.open) {
+            setStart(false)
+        }
+    }, [props.open])
     return (
         <div>
-            <button type="button" onClick={props.handleOpen}>
-                Open Modal
-            </button>
+            <div className="createButton" onClick={props.handleOpen}>
+                <div className="buttonContent">
+                    <NoteAddIcon fontSize="large" className="createMapsIcon"/>
+                    <span>作成</span>
+                </div>
+            </div>
+
             <Modal
                 open={props.open}
                 onClose={props.handleClose}

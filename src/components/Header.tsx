@@ -10,19 +10,16 @@ import SearchIcon from "@material-ui/icons/Search";
 import { IconButton, Drawer } from "@material-ui/core";
 
 import { useHistory } from "react-router";
+import Dialog from "./dialog";
 const Menu: React.FC = () => {
+    const [open, setOpen] = React.useState(false);
   return (
     <div className="header__menu">
       <svg viewBox="0 0 500 500" className="logo">
         <use xlinkHref={`${logo}#logo`} />
       </svg>
 
-      <div className="createButton">
-        <div className="buttonContent">
-          <NoteAddIcon fontSize="large" className="createMapsIcon" />
-          <span>作成</span>
-        </div>
-      </div>
+        <Dialog handleClose={() => {setOpen(false)}} handleOpen={() => {setOpen(true)}} open={open}/>
 
       <hr className="partition" />
 

@@ -1,12 +1,11 @@
 import SearchIcon from "@material-ui/icons/Search";
-import React, {useState} from "react";
+import React from "react";
 import {Card} from "./Card";
 import "./Home.css";
 import {trendMockData} from "../util/mock";
-import Dialog from "./dialog";
 
 const Home: React.FC = () => {
-    const [open,setOpen] = useState<boolean>(false);
+
 
     return (
         <div className="home">
@@ -24,7 +23,7 @@ const Home: React.FC = () => {
             {trendMockData.map((d, index) => (
                 <Card title={d.title} star={d.star} caption={d.caption} key={index}/>
             ))}
-            <Dialog handleClose={() => setOpen(false)} handleOpen={() => setOpen(true)} open={open}/>
+
         </div>
     );
 };
