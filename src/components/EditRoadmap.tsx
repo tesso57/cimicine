@@ -16,7 +16,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
   setTitle,
 }) => {
   const history = useHistory();
-  const [step, setStep] = React.useState("");
+  const [step, setStep] = React.useState((1 * 0.001).toString(36).substring(6));
   const handleOpen = (step: string) => {
     setStep(step);
   };
