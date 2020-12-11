@@ -4,7 +4,6 @@ import "./Header.css";
 import logo from "../img/logo.svg";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SearchIcon from "@material-ui/icons/Search";
 import { IconButton, Drawer } from "@material-ui/core";

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useCallback, useEffect, useRef} from 'react'
 
 interface Props {
     isStart: boolean
@@ -41,7 +41,7 @@ const Visualizer = (props: Props) => {
         return Math.floor(Math.random() * Math.floor(max))
     }
 
-    const printBars = (ctx: CanvasRenderingContext2D, isRandom: boolean) => {
+    const printBars = useCallback((ctx: CanvasRenderingContext2D, isRandom: boolean) => {
         ctx.fillStyle = BoxColor
         ctx.lineWidth = 2;
         let x = 0
@@ -55,7 +55,7 @@ const Visualizer = (props: Props) => {
             printBar(ctx, x, num)
             x += BoxWidth + Padding
         }
-    }
+    },[])
 
     useEffect(() => {
         const ctx = getCanvasContext()
@@ -64,13 +64,13 @@ const Visualizer = (props: Props) => {
         }
     }, [printBars])
 
-    const step = (timestamp: DOMHighResTimeStamp) => {
+    const step = useCallback((timestamp: DOMHighResTimeStamp) => {
         const ctx = getCanvasContext()
         if (ctx !== undefined)
             printBars(ctx, true)
         // @ts-ignore
         requestRef.current = requestAnimationFrame(step);
-    }
+    },[printBars])
 
     useEffect(() => {
         const ctx = getCanvasContext()
