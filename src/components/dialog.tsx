@@ -1,11 +1,11 @@
-import React from "react"
-import {makeStyles, Theme, createStyles} from '@material-ui/core/styles';
+import React, {useState} from "react"
 import Modal from '@material-ui/core/Modal';
 import "./dialog.css"
 import TextField from '@material-ui/core/TextField';
 import PlayCircleFilledSharpIcon from '@material-ui/icons/PlayCircleFilledSharp';
 import PauseCircleFilledSharpIcon from '@material-ui/icons/PauseCircleFilledSharp';
 import {IconButton} from "@material-ui/core";
+import Visualizer from "./visualizer";
 
 interface Props {
     handleClose: () => void
@@ -15,6 +15,7 @@ interface Props {
 
 const Dialog = (props: Props) => {
 
+    const [isStart, setStart] = useState<boolean>(false);
     return (
         <div>
             <button type="button" onClick={props.handleOpen}>
@@ -27,6 +28,7 @@ const Dialog = (props: Props) => {
                 aria-describedby="simple-modal-description"
             >
                 <div className={"dialog-content"}>
+                    <Visualizer isStart={isStart} class={"dialog-canvas"}/>
                     <div className={"dialog-title"}>
                         <TextField
                             InputProps={{
@@ -44,6 +46,9 @@ const Dialog = (props: Props) => {
 
                     <div className={"dialog-caption"}>
                         <TextField
+                            fullWidth={true}
+                            multiline
+                            rowsMax={4}
                             InputProps={{
                                 'aria-label': 'naked',
                                 disableUnderline: true,
@@ -56,8 +61,14 @@ const Dialog = (props: Props) => {
                         />
                     </div>
                     <div className={"dialog-icon"}>
-                        <IconButton onClick={() => console.log("pushed")} style={{color:'white'}}>
-                            <PlayCircleFilledSharpIcon fontSize="large" />
+                        <IconButton onClick={() => setStart(!isStart)} style={{color: 'white'}}>
+                            {(isStart) ? (
+                                <PauseCircleFilledSharpIcon fontSize={"large"}/>
+
+                            ) : (
+                                <PlayCircleFilledSharpIcon fontSize="large"/>
+                            )}
+
                         </IconButton>
                     </div>
                 </div>
