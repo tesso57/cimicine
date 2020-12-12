@@ -40,16 +40,18 @@ const SignUp = ({ history }: any) => {
   };
 
   useEffect(() => {
-    setValidity(() => {
-      if (
-        values.password !== values.passwordConfirm ||
-        values.password.length === 0 ||
-        values.passwordConfirm.length === 0
-      )
-        return false;
+    setValidity(
+      (() => {
+        if (
+          values.password !== values.passwordConfirm ||
+          values.password.length === 0 ||
+          values.passwordConfirm.length === 0
+        )
+          return false;
 
-      return true;
-    });
+        return true;
+      })()
+    );
   }, [values.password, values.passwordConfirm]);
 
   const handleClickShowPassword = () => {
