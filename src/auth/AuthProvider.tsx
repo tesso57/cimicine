@@ -6,7 +6,7 @@ import {auth} from "../firebase/index";
 interface Props {
     signup: (email: string, password: string, username: string, history: H.History) => void
     signin: (email: string, password: string, history: H.History) => void
-    currentUser: null | object
+    currentUser: any
 }
 
 const AuthContext = React.createContext<Props>({

@@ -11,8 +11,6 @@ interface Props {
 const PrivateRoute = ({component,...rest}:Props) => {
     const {currentUser} = useContext(AuthContext);
     const renderingComponent = currentUser ? component : SignIn;
-    console.log(currentUser)
-
     return(
         <Route {...rest} component={renderingComponent}/>
     )
