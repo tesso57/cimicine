@@ -13,21 +13,20 @@ import Footer from "./components/Footer";
 import NotFound from "./auth/404";
 
 const App: React.FC = () => {
+
     return (
         <div className="app">
             <AuthProvider>
                 <Router>
                     <Header/>
-                    <Switch>
-                        <React.StrictMode>
-                            <PrivateRoute exact path={"/"} component={Home}/>
+                        <Switch>
                             <Route exact path={"/signin"} component={SignIn}/>
                             <Route exact path={"/signup"} component={SignUp}/>
                             <Route exact path={"/edit"} component={EditRoadmap}/>
                             <Route exact path={"/create"} component={MakeNewLoadMap}/>
+                            <PrivateRoute exact path={"/"} component={Home}/>
                             <Route component={NotFound}/>
-                        </React.StrictMode>
-                    </Switch>
+                        </Switch>
                     <Footer/>
                 </Router>
             </AuthProvider>

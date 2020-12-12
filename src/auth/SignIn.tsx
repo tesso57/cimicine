@@ -48,11 +48,12 @@ const SignIn = ({history}: any) => {
     const {signin, currentUser} = useContext(AuthContext);
 
     useEffect(() => {
-        console.log("useEffect")
         if (currentUser) {
             history.push('/')
         }
-    }, [currentUser,history])
+    }, [currentUser, history])
+
+
     const handleSubmit = (event: any) => {
         event.preventDefault();
         signin(values.email, values.password, history);

@@ -5,7 +5,7 @@ import {auth} from "../firebase/index";
 interface Props {
     signup: (email: string, password: string, history: H.History) => void
     signin: (email: string, password: string, history: H.History) => void
-    currentUser:null | object
+    currentUser: null | object
 }
 
 const AuthContext = React.createContext<Props>({
@@ -13,12 +13,12 @@ const AuthContext = React.createContext<Props>({
         },
         signin: async (email: string, password: string, history: H.History) => {
         },
-        currentUser:null
+        currentUser: null,
     }
 );
 
 const AuthProvider: React.FC = ({children}) => {
-    const [currentUser, setCurrentUser] = useState<null | object >(null);
+    const [currentUser, setCurrentUser] = useState<null | object>(null);
 
     //signup関数
     const signup = async (email: string, password: string, history: H.History) => {
