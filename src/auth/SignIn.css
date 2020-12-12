@@ -15,10 +15,6 @@
   margin: 10px 0 40px;
 }
 
-.signInForm .signInButton {
-  margin-top: -10px;
-}
-
 .toSignUp .arrowIcon,
 .toSignUp span {
   display: inline-block;
