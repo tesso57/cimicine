@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "@material-ui/core/Modal";
-import "./Dialog.css";
+import "./dialog.css";
 import TextField from "@material-ui/core/TextField";
 import PlayCircleFilledSharpIcon from "@material-ui/icons/PlayCircleFilledSharp";
 import PauseCircleFilledSharpIcon from "@material-ui/icons/PauseCircleFilledSharp";
