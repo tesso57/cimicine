@@ -123,6 +123,7 @@
   }
   .step__urlSubmit {
     flex-grow: 160px;
+    margin-left: 16px;
   }
   .step__urlInput {
     flex: 1;
