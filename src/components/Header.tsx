@@ -5,87 +5,91 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SearchIcon from "@material-ui/icons/Search";
-import { IconButton, Drawer } from "@material-ui/core";
-import { useHistory } from "react-router";
+import {IconButton, Drawer} from "@material-ui/core";
+import {useHistory} from "react-router";
 import Dialog from "./Dialog";
 
 const Menu: React.FC = () => {
     const [open, setOpen] = React.useState(false);
-  return (
-    <div className="header__menu">
-      <svg viewBox="0 0 500 500" className="logo">
-        <use xlinkHref={`${logo}#logo`} />
-      </svg>
+    return (
+        <div className="header__menu">
+            <svg viewBox="0 0 500 500" className="logo">
+                <use xlinkHref={`${logo}#logo`}/>
+            </svg>
 
-        <Dialog handleClose={() => {setOpen(false)}} handleOpen={() => {setOpen(true)}} open={open}/>
+            <Dialog handleClose={() => {
+                setOpen(false)
+            }} handleOpen={() => {
+                setOpen(true)
+            }} open={open}/>
 
-      <hr className="partition" />
+            <hr className="partition"/>
 
-      <div className="hotMaps">
-        <div className="hotMapsContent">
-          <WhatshotIcon
-            style={{ color: "#ff1f1f" }}
-            fontSize="large"
-            className="hotMapsIcon"
-          />
-          <span>急上昇のロードマップ</span>
+            <div className="hotMaps">
+                <div className="hotMapsContent">
+                    <WhatshotIcon
+                        style={{color: "#ff1f1f"}}
+                        fontSize="large"
+                        className="hotMapsIcon"
+                    />
+                    <span>急上昇のロードマップ</span>
+                </div>
+            </div>
+
+            <div className="searchMaps">
+                <div className="searchMapsContent">
+                    <SearchIcon
+                        style={{color: "#007c40"}}
+                        fontSize="large"
+                        className="searchMapsIcon"
+                    />
+                    <span>ロードマップを探す</span>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div className="searchMaps">
-        <div className="searchMapsContent">
-          <SearchIcon
-            style={{ color: "#007c40" }}
-            fontSize="large"
-            className="searchMapsIcon"
-          />
-          <span>ロードマップを探す</span>
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 const Header: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
-  const toggleDrawer = (open: boolean) => (
-    event: React.KeyboardEvent | React.MouseEvent
-  ) => {
-    if (
-      event.type === "keydown" &&
-      ((event as React.KeyboardEvent).key === "Tab" ||
-        (event as React.KeyboardEvent).key === "Shift")
-    ) {
-      return;
-    }
+    const [open, setOpen] = React.useState(false);
+    const toggleDrawer = (open: boolean) => (
+        event: React.KeyboardEvent | React.MouseEvent
+    ) => {
+        if (
+            event.type === "keydown" &&
+            ((event as React.KeyboardEvent).key === "Tab" ||
+                (event as React.KeyboardEvent).key === "Shift")
+        ) {
+            return;
+        }
 
-    setOpen(open);
-  };
-  const history = useHistory();
-  return (
-    <div className="header">
-      <IconButton onClick={() => setOpen(true)}>
-        <MenuIcon fontSize="large" />
-      </IconButton>
+        setOpen(open);
+    };
+    const history = useHistory();
+    return (
+        <div className="header">
+            <IconButton onClick={() => setOpen(true)}>
+                <MenuIcon fontSize="large"/>
+            </IconButton>
 
-      <div className="logoAndTitle" onClick={() => history.push("/")}>
-        <svg viewBox="0 0 500 500" className="logo">
-          <use xlinkHref={`${logo}#logo`} />
-        </svg>
-        <h1 className="title">Cimicine</h1>
-      </div>
-      <IconButton>
-        <AccountCircleIcon
-          className="userIcon"
-          fontSize="large"
-          style={{ color: "#007c40" }}
-        />
-      </IconButton>
-      <Drawer open={open} anchor="left" onClose={toggleDrawer(false)}>
-        <Menu />
-      </Drawer>
-    </div>
-  );
+            <div className="logoAndTitle" onClick={() => history.push("/")}>
+                <svg viewBox="0 0 500 500" className="logo">
+                    <use xlinkHref={`${logo}#logo`}/>
+                </svg>
+                <h1 className="title">Cimicine</h1>
+            </div>
+            <IconButton>
+                <AccountCircleIcon
+                    className="userIcon"
+                    fontSize="large"
+                    style={{color: "#007c40"}}
+                />
+            </IconButton>
+            <Drawer open={open} anchor="left" onClose={toggleDrawer(false)}>
+                <Menu/>
+            </Drawer>
+        </div>
+    );
 };
 
 export default Header;

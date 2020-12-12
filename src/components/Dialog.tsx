@@ -24,9 +24,16 @@ const theme = createMuiTheme({
     },
 });
 
-const Dialog = (props: Props) => {
 
+const Dialog = (props: Props) => {
     const [isStart, setStart] = useState<boolean>(false);
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault()
+        console.log("title",event.target.title.value)
+        console.log("caption",event.target.caption.value)
+    };
+
     useEffect(() => {
         if (!props.open) {
             setStart(false)
@@ -56,7 +63,7 @@ const Dialog = (props: Props) => {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
-                <div className={"dialog-content"}>
+                <form onSubmit={handleSubmit} className={"dialog-content"}>
                     <Visualizer isStart={isStart} class={"dialog-canvas"}/>
                     <div className={"dialog-title"}>
                         <TextField
@@ -69,9 +76,9 @@ const Dialog = (props: Props) => {
                                 }
                             }}
                             placeholder={"Untitled"}
+                            name={"title"}
                         />
                     </div>
-
                     <div className={"dialog-caption"}>
                         <TextField
                             fullWidth={true}
@@ -86,20 +93,20 @@ const Dialog = (props: Props) => {
                                 }
                             }}
                             placeholder={"Enter the Caption here..."}
+                            name={"caption"}
                         />
                     </div>
                     <div className={"dialog-icon"}>
-                        <IconButton onClick={() => setStart(!isStart)} style={{color: 'white'}}>
+                        <IconButton type={"submit"} onClick={() => setStart(!isStart)} style={{color: 'white'}}>
                             {(isStart) ? (
                                 <PauseCircleFilledSharpIcon fontSize={"large"}/>
 
                             ) : (
                                 <PlayCircleFilledSharpIcon fontSize="large"/>
                             )}
-
                         </IconButton>
                     </div>
-                </div>
+                </form>
             </Modal>
         </div>
     )
