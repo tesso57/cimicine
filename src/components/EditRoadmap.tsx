@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import Step from "./Step";
 import { uid } from "../utils/misc";
 import { JsonTypes, StepFormType, StepType } from "../type";
+import { sampleData } from "../utils/mock";
 
 interface EditRoadmapProps {
   title?: string;
@@ -22,40 +23,6 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
   const history = useHistory();
   // @typescript-eslint/no-unused-vars
   // const { currentUser } = useContext(AuthContext);
-
-  const sampleData: JsonTypes = {
-    data: {
-      steps: [
-        {
-          title: "The First Step",
-          body: "",
-          url: [],
-          uid: `${uid()}`,
-        },
-        {
-          title: "The Second Step",
-          body: "",
-          url: [],
-          uid: `${uid()}`,
-        },
-        {
-          title: "The Third Step",
-          body: "",
-          url: [],
-          uid: `${uid()}`,
-        },
-      ],
-
-      createdAt: new Date(),
-      star: 0,
-    },
-    relationships: {
-      author: {
-        displayName: "displayName",
-        id: "23820",
-      },
-    },
-  };
 
   const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
   const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
