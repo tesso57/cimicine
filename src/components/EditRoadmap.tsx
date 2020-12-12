@@ -8,13 +8,15 @@ import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Step from "./Step";
 import { uid } from "../utils/misc";
-import { StepFormType, StepType } from "../type";
+import { JsonTypes, StepFormType, StepType } from "../type";
 import { sampleData } from "../utils/mock";
+import { db } from "../firebase";
 
 interface EditRoadmapProps {
   title?: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
 }
+
 //@typescript-eslint/no-unused-vars
 const EditRoadmap: React.FC<EditRoadmapProps> = ({
   title = "無題のロードマップ",
@@ -42,6 +44,32 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
     handleOpen(emptyStep.uid);
   };
 
+  const uploadFlow = () => {
+    console.log(data);
+    const json: JsonTypes = {
+      data: {
+        steps: data,
+        createdAt: new Date(),
+        star: 0,
+        title: title,
+        caption: "Coming Soon",
+      },
+      relationships: {
+        author: {
+          displayName: "harsssh",
+          id: "23456",
+        },
+      },
+    };
+    const docId = Math.random().toString(32).substring(2);
+    db.collection("flows")
+      .doc(docId)
+      .set(json)
+      .then((r) => {
+        history.push("/");
+      });
+  };
+
   return (
     <div className="editRoadmap">
       <div className="nav">
@@ -51,7 +79,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
           </IconButton>
           <h1>{title}</h1>
         </div>
-        <IconButton onClick={() => {}} style={{ marginRight: 16 }}>
+        <IconButton onClick={uploadFlow} style={{ marginRight: 16 }}>
           <CloudUploadIcon style={{ color: "white" }} />
         </IconButton>
       </div>
