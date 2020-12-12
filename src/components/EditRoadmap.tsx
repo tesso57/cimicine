@@ -12,17 +12,17 @@ import { JsonTypes, StepFormType, StepType } from "../type";
 import { sampleData } from "../utils/mock";
 import { db } from "../firebase";
 
-interface EditRoadmapProps {
-  title?: string;
-  setTitle?: React.Dispatch<React.SetStateAction<string>>;
-}
-
-//@typescript-eslint/no-unused-vars
-const EditRoadmap: React.FC<EditRoadmapProps> = ({
-  title = "無題のロードマップ",
-  setTitle,
-}) => {
+const EditRoadmap: React.FC = () => {
   const history = useHistory();
+  !history.location.state && history.goBack();
+  const { title, description } = history.location.state as {
+    title: string;
+    description: string;
+  };
+
+  sampleData.data.title = title;
+  sampleData.data.description = description;
+
   // @typescript-eslint/no-unused-vars
   // const { currentUser } = useContext(AuthContext);
 
@@ -52,7 +52,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
         createdAt: new Date(),
         star: 0,
         title: title,
-        description: "Coming Soon",
+        description: description,
       },
       relationships: {
         author: {
