@@ -6,6 +6,7 @@ import PauseIcon from "@material-ui/icons/Pause";
 import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Step from "./Step";
+import { uid } from "../utils/misc";
 
 interface EditRoadmapProps {
   title?: string;
@@ -16,8 +17,6 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
   setTitle,
 }) => {
   const history = useHistory();
-
-  const uid = (index: number) => (index * 0.001).toString(36).substring(6);
 
   const [step, setStep] = React.useState(uid(0));
   const handleOpen = (step: string) => {
