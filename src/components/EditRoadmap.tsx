@@ -11,6 +11,7 @@ import { uid } from "../utils/misc";
 import { JsonTypes, StepFormType, StepType } from "../type";
 import { sampleData } from "../utils/mock";
 import { db } from "../firebase";
+import ConfirmDialog from "./ConfirmDialog";
 
 interface EditRoadmapProps {
   title?: string;
@@ -28,6 +29,15 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
 
   const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
   const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
 
   const handleOpen = (uid: string) => {
     setNowOpen(uid);
@@ -79,7 +89,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
           </IconButton>
           <h1>{title}</h1>
         </div>
-        <IconButton onClick={uploadFlow} style={{ marginRight: 16 }}>
+        <IconButton onClick={handleDialogOpen} style={{ marginRight: 16 }}>
           <CloudUploadIcon style={{ color: "white" }} />
         </IconButton>
       </div>
@@ -122,6 +132,12 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
           <p>{title}</p>
           <PauseIcon style={{ color: "var(--cimicine-main)" }} />
         </div>
+
+        <ConfirmDialog
+          open={dialogOpen}
+          handleClose={handleDialogClose}
+          setFunc={uploadFlow}
+        />
       </div>
     </div>
   );
