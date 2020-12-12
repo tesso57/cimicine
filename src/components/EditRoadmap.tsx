@@ -8,7 +8,7 @@ import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Step from "./Step";
 import { uid } from "../utils/misc";
-import { JsonTypes, StepFormType, StepType } from "../type";
+import { StepFormType, StepType } from "../type";
 import { sampleData } from "../utils/mock";
 
 interface EditRoadmapProps {
