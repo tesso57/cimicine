@@ -5,23 +5,34 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SearchIcon from "@material-ui/icons/Search";
-import {IconButton, Drawer} from "@material-ui/core";
-import {useHistory} from "react-router";
+
+import { IconButton, Drawer } from "@material-ui/core";
+import MenuList from "@material-ui/core/MenuList";
+import MenuItem from "@material-ui/core/MenuItem";
+import Popper from "@material-ui/core/Popper";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+
+import { useHistory } from "react-router";
 import Dialog from "./Dialog";
+const DrawerMenu: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div className="header__menu">
+      <svg viewBox="0 0 500 500" className="logo">
+        <use xlinkHref={`${logo}#logo`} />
+      </svg>
 
-const Menu: React.FC = () => {
-    const [open, setOpen] = React.useState(false);
-    return (
-        <div className="header__menu">
-            <svg viewBox="0 0 500 500" className="logo">
-                <use xlinkHref={`${logo}#logo`}/>
-            </svg>
-
-            <Dialog handleClose={() => {
-                setOpen(false)
-            }} handleOpen={() => {
-                setOpen(true)
-            }} open={open}/>
+      <Dialog
+        handleClose={() => {
+          setOpen(false);
+        }}
+        handleOpen={() => {
+          setOpen(true);
+        }}
+        open={open}
+      />
 
             <hr className="partition"/>
 
@@ -63,33 +74,84 @@ const Header: React.FC = () => {
             return;
         }
 
-        setOpen(open);
-    };
-    const history = useHistory();
-    return (
-        <div className="header">
-            <IconButton onClick={() => setOpen(true)}>
-                <MenuIcon fontSize="large"/>
-            </IconButton>
+    setOpen(open);
+  };
+  const history = useHistory();
 
-            <div className="logoAndTitle" onClick={() => history.push("/")}>
-                <svg viewBox="0 0 500 500" className="logo">
-                    <use xlinkHref={`${logo}#logo`}/>
-                </svg>
-                <h1 className="title">Cimicine</h1>
-            </div>
-            <IconButton>
-                <AccountCircleIcon
-                    className="userIcon"
-                    fontSize="large"
-                    style={{color: "#007c40"}}
-                />
-            </IconButton>
-            <Drawer open={open} anchor="left" onClose={toggleDrawer(false)}>
-                <Menu/>
-            </Drawer>
-        </div>
-    );
+  const [dropDownOpen, setDropDownOpen] = React.useState(false);
+  const anchorRef = React.useRef<HTMLButtonElement>(null);
+
+  const handleToggle = () => {
+    setDropDownOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event: React.MouseEvent<EventTarget>) => {
+    if (
+      anchorRef.current &&
+      anchorRef.current.contains(event.target as HTMLElement)
+    ) {
+      return;
+    }
+
+    setDropDownOpen(false);
+  };
+
+  return (
+    <div className="header">
+      <IconButton onClick={() => setOpen(true)}>
+        <MenuIcon fontSize="large" />
+      </IconButton>
+
+      <div className="logoAndTitle" onClick={() => history.push("/")}>
+        <svg viewBox="0 0 500 500" className="logo">
+          <use xlinkHref={`${logo}#logo`} />
+        </svg>
+        <h1 className="title">Cimicine</h1>
+      </div>
+      <IconButton
+        ref={anchorRef}
+        aria-controls={open ? "dropDownMenu" : undefined}
+        aria-haspopup="true"
+        onClick={handleToggle}
+      >
+        <AccountCircleIcon
+          className="userIcon"
+          fontSize="large"
+          style={{ color: "#007c40" }}
+        />
+      </IconButton>
+      <Popper
+        open={dropDownOpen}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+        style={{zIndex:100}}
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === "bottom" ? "center top" : "center bottom",
+            }}
+          >
+            <Paper >
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList autoFocusItem={dropDownOpen} id="dropDownMenu">
+                  <MenuItem onClick={handleClose}>マイページ</MenuItem>
+                  <MenuItem onClick={handleClose}>ログアウト</MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+      <Drawer open={open} anchor="left" onClose={toggleDrawer(false)}>
+        <DrawerMenu />
+      </Drawer>
+    </div>
+  );
 };
 
 export default Header;

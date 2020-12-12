@@ -1,8 +1,8 @@
 import SearchIcon from "@material-ui/icons/Search";
 import React from "react";
-import {Card} from "./Card";
+import { Card } from "./Card";
 import "./Home.css";
-import {trendMockData} from "../util/mock";
+import {trendMockData} from "../utils/mock";
 import TextField from "@material-ui/core/TextField";
 
 const Home: React.FC = () => {

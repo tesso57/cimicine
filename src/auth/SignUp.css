@@ -1,0 +1,40 @@
+.signUpForm .MuiIconButton-edgeEnd {
+  margin-right: -12px !important;
+}
+
+.signUpForm {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.signUpForm .formInput {
+  margin-bottom: 30px;
+}
+
+.signUpForm .MuiDivider-middle {
+  margin: 10px 0 40px;
+}
+
+.signUpForm .signUpButton {
+  margin-top: -10px;
+}
+
+.toSignIn .arrowIcon,
+.toSignIn span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.toSignIn {
+  margin-top: 14px;
+  text-align: right;
+}
+
+.linkStyle {
+  color: #68a7df;
+  text-decoration: none;
+}
+
+.linkStyle:hover {
+  color: #67bdff;
+}

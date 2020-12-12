@@ -3,10 +3,11 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
+}
+.logoAndTitle {
   cursor: hand;
   cursor: pointer;
 }
-
 .MuiIconButton-root {
   margin: 4px !important;
 }
@@ -36,6 +37,7 @@
 .header__menu {
   background-color: white;
   width: 60vw;
+  max-width: 350px;
 }
 
 .header__menu .logo {

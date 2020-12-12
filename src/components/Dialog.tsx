@@ -11,9 +11,9 @@ import Button from "@material-ui/core/Button";
 import {createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
 
 interface Props {
-    handleClose: () => void
-    handleOpen: () => void
-    open: boolean
+    handleClose: () => void;
+    handleOpen: () => void;
+    open: boolean;
 }
 
 const theme = createMuiTheme({
@@ -71,7 +71,6 @@ const Dialog = (props: Props) => {
                     </Button>
                 </ThemeProvider>
             </div>
-
             <Modal
                 open={props.open}
                 onClose={props.handleClose}
@@ -124,8 +123,6 @@ const Dialog = (props: Props) => {
                 </form>
             </Modal>
         </div>
-    )
-}
-
-
+    );
+};
 export default Dialog;

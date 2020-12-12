@@ -59,30 +59,38 @@
 }
 .step__titleInput:disabled {
   background-color: unset;
-  color: lightgray;
   cursor: pointer;
 }
 
 .step__bookmarkItem {
-  border: 1px solid lightgray;
+  border: 1px solid gray;
   border-radius: 2px;
-  opacity: 0.8;
+  opacity: 0.5;
 
   padding: 8px;
   margin: 4px 0;
 
   display: flex;
   align-items: center;
+
+  text-decoration: none;
+  color: black;
 }
+.step__bookmarkItem:hover {
+  opacity: 1;
+}
+
 .step__bookmarkIcon {
   width: 32px;
   object-fit: contain;
   margin-right: 16px;
 }
 .step__bookmarkUrl {
-  font-weight: normal;
 }
-
+.step__urlForm {
+  display: flex;
+  flex-direction: column;
+}
 .step__urlInput {
   margin-top: 10px;
   outline: none;
@@ -108,4 +116,15 @@
 }
 .step__urlSubmit:hover {
   opacity: 1;
+}
+@media screen and (min-width: 700px) {
+  .step__urlForm {
+    flex-direction: row;
+  }
+  .step__urlSubmit {
+    flex-grow: 160px;
+  }
+  .step__urlInput {
+    flex: 1;
+  }
 }
