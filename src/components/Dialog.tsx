@@ -69,7 +69,6 @@ const Dialog = (props: Props) => {
                                 }
                             }}
                             placeholder={"Untitled"}
-
                         />
                     </div>
 

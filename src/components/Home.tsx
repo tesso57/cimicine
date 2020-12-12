@@ -3,18 +3,27 @@ import React from "react";
 import {Card} from "./Card";
 import "./Home.css";
 import {trendMockData} from "../util/mock";
+import TextField from "@material-ui/core/TextField";
 
 const Home: React.FC = () => {
 
 
     return (
         <div className="home">
-            <div className="search">
+            <div className={"search"}>
                 <SearchIcon fontSize="large"/>
-                <input
-                    className="search__input"
-                    type="text"
-                    placeholder="ロードマップを探す"
+                <TextField
+                    InputProps={{
+                        'aria-label': 'naked',
+                        disableUnderline: true,
+                        style: {
+                            color: `#000`,
+                            fontSize: 20,
+                            fontWeight:"bold"
+                        }
+                    }}
+                    placeholder={"ロードマップを探す"}
+                    fullWidth={true}
                 />
             </div>
             <h1 style={{color: "white", margin: "24px 0 16px"}}>
