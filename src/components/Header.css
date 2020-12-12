@@ -56,6 +56,7 @@
   border-radius: 2px;
   border: solid 1px #ffffff;
   background-color: #007c40;
+  cursor: pointer;
 }
 
 .createMapsIcon {

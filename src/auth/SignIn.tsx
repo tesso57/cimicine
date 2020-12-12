@@ -5,7 +5,6 @@ import {AuthContext} from "./AuthProvider";
 import "firebase/auth"
 
 const SignIn = ({history}:any) => {
-    console.log("login")
     const {signin} = useContext(AuthContext)
     const handleSubmit = (event: any) => {
         event.preventDefault()
