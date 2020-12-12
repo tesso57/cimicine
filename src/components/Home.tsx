@@ -14,7 +14,7 @@ const Home: React.FC = () => {
         setAllRoadmap(snapshot.docs.map((doc) => doc.data()))
       );
   });
-  return (
+    return (
     <div className="home">
       <div className={"search"}>
         <SearchIcon fontSize="large" />
@@ -36,14 +36,12 @@ const Home: React.FC = () => {
         👨‍👩‍👧 みんなのロードマップ
       </h1>
       {allRoadmap.map((d, index) => (
+          // @ts-ignore
         <Card data={d} key={index} />
       ))}
       <h1 style={{ color: "white", margin: "24px 0 0 ", paddingBottom: 16 }}>
         🔥 急上昇中のロードマップ
       </h1>
-      {/* {trendMockData.map((d, index) => (
-        <Card data={d} key={index} />
-      ))} */}
     </div>
   );
 };
