@@ -8,6 +8,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import IconButton from "@material-ui/core/IconButton";
 import EmailIcon from "@material-ui/icons/Email";
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LockIcon from "@material-ui/icons/Lock";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
@@ -17,6 +18,7 @@ import "firebase/auth";
 
 const SignUp = ({ history }: any) => {
   interface State {
+    username: string;
     email: string;
     password: string;
     passwordConfirm: string;
@@ -25,6 +27,7 @@ const SignUp = ({ history }: any) => {
   }
 
   const [values, setValues] = React.useState<State>({
+    username: "",
     email: "",
     password: "",
     passwordConfirm: "",
@@ -86,6 +89,26 @@ const SignUp = ({ history }: any) => {
       <form onSubmit={handleSubmit} className="signUpForm">
         <h1>サインアップ</h1>
         <Divider variant="middle" />
+        <TextField
+            name="username"
+            size="small"
+            className="formInput"
+            fullWidth
+            variant="outlined"
+            label="ユーザーネーム"
+            value={values.username}
+            onChange={handleChange("username")}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            InputProps={{
+              startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountBoxIcon fontSize="small" />
+                  </InputAdornment>
+              ),
+            }}
+        />
         <TextField
           name="email"
           size="small"
