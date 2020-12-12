@@ -68,8 +68,14 @@ const SignUp = ({ history }: any) => {
     event.preventDefault();
   };
 
-  console.log("signup");
-  const { signup } = useContext(AuthContext);
+  const { signup, currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (currentUser) {
+      history.push("/");
+    }
+  }, [currentUser, history]);
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
     signup(values.email, values.password, history);
@@ -135,6 +141,7 @@ const SignUp = ({ history }: any) => {
             shrink: true,
           }}
         />
+
         <TextField
           name="passwordConfirm"
           size="small"
@@ -184,6 +191,7 @@ const SignUp = ({ history }: any) => {
             shrink: true,
           }}
         />
+
         <Button
           className="signUpButton"
           fullWidth

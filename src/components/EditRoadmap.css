@@ -7,12 +7,17 @@
   color: white;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   top: 0;
   z-index: 20;
 }
-.nav > h1 {
+.nav h1 {
   font-size: 20px;
   margin-left: 32px;
+}
+.nav__backAndTitle {
+  display: flex;
+  align-items: center;
 }
 .edit {
   position: relative;
