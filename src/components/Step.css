@@ -117,3 +117,14 @@
 .step__urlSubmit:hover {
   opacity: 1;
 }
+@media screen and (min-width: 700px) {
+  .step__urlForm {
+    flex-direction: row;
+  }
+  .step__urlSubmit {
+    flex-grow: 160px;
+  }
+  .step__urlInput {
+    flex: 1;
+  }
+}
