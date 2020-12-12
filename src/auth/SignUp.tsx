@@ -33,17 +33,6 @@ const SignUp = ({ history }: any) => {
   });
   const [validity, setValidity] = React.useState(false);
 
-  const submitOk = () => {
-    if (
-      values.password !== values.passwordConfirm ||
-      values.password.length === 0 ||
-      values.passwordConfirm.length === 0
-    )
-      return false;
-
-    return true;
-  };
-
   const handleChange = (prop: keyof State) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -51,7 +40,16 @@ const SignUp = ({ history }: any) => {
   };
 
   useEffect(() => {
-    setValidity(submitOk);
+    setValidity(() => {
+      if (
+        values.password !== values.passwordConfirm ||
+        values.password.length === 0 ||
+        values.passwordConfirm.length === 0
+      )
+        return false;
+
+      return true;
+    });
   }, [values.password, values.passwordConfirm]);
 
   const handleClickShowPassword = () => {
