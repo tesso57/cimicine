@@ -13,18 +13,18 @@ import {sampleData} from "../utils/mock";
 import {db} from "../firebase";
 import {AuthContext} from "../auth/AuthProvider";
 
-interface EditRoadmapProps {
-    title?: string;
-    setTitle: React.Dispatch<React.SetStateAction<string>>;
-}
+const EditRoadmap: React.FC = () => {
+  const history = useHistory();
+  !history.location.state && history.goBack();
+  const { title, description } = history.location.state as {
+    title: string;
+    description: string;
+  };
 
-//@typescript-eslint/no-unused-vars
-const EditRoadmap: React.FC<EditRoadmapProps> = ({
-                                                     title = "無題のロードマップ",
-                                                     setTitle,
-                                                 }) => {
-    const history = useHistory();
-    const {currentUser} = useContext(AuthContext);
+  sampleData.data.title = title;
+  sampleData.data.description = description;
+
+  const { currentUser } = useContext(AuthContext);
 
     const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
     const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
@@ -52,7 +52,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
                     createdAt: new Date(),
                     star: 0,
                     title: title,
-                    caption: "Coming Soon",
+                    description: "Coming Soon",
                 },
                 relationships: {
                     author: {

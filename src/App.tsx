@@ -23,11 +23,13 @@ const App: React.FC = () => {
           <Switch>
             <Route exact path={"/signin"} component={SignIn} />
             <Route exact path={"/signup"} component={SignUp} />
-            <Route exact path={"/edit"} component={EditRoadmap} />
-            <Route exact path={"/create"} component={MakeNewLoadMap} />
-            <Route exact path={"/view"}>
-              <ViewRoadmap json={sampleData} />
-            </Route>
+            <PrivateRoute exact path={"/edit"} component={EditRoadmap} />
+            <PrivateRoute exact path={"/create"} component={MakeNewLoadMap} />
+            <PrivateRoute
+              exact
+              path={"/view"}
+              component={() => <ViewRoadmap json={sampleData} />}
+            />
             <PrivateRoute exact path={"/"} component={Home} />
             <Route component={NotFound} />
           </Switch>

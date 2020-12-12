@@ -6,18 +6,17 @@ export type StepType = {
     uid: string;
 };
 export type JsonTypes = {
-    data: {
-        steps: StepType[];
-        createdAt: Date;
-        star: number;
-        title: string;
-        caption: string;
-    };
-    relationships: {
-        author: {
-            displayName: string;
-            id: string;
-        };
+  data: {
+    steps: StepType[];
+    createdAt: Date;
+    star: number;
+    title: string;
+    description: string;
+  };
+  relationships: {
+    author: {
+      displayName: string;
+      id: string;
     };
 };
 
