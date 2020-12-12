@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import EditRoadmap from "./components/EditRoadmap";
 import MakeNewLoadMap from "./components/MakeNewLoadMap";
 import Footer from "./components/Footer";
+import NotFound from "./auth/404";
 
 const App: React.FC = () => {
     return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
                             <Route exact path={"/signup"} component={SignUp}/>
                             <Route exact path={"/edit"} component={EditRoadmap}/>
                             <Route exact path={"/create"} component={MakeNewLoadMap}/>
+                            <Route component={NotFound}/>
                         </React.StrictMode>
                     </Switch>
                     <Footer/>
