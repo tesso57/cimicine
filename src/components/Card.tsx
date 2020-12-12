@@ -1,19 +1,20 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { JsonTypes } from "../type";
 import "./Card.css";
 
 interface CardProps {
-  title: string;
-  star: number;
-  description: string;
+  data: JsonTypes;
 }
-export const Card: React.FC<CardProps> = ({ title, star, description }) => {
+export const Card: React.FC<CardProps> = ({ data }) => {
+  const history = useHistory();
   return (
-    <div className="card">
+    <div className="card" onClick={() => history.push("view", data)}>
       <h2 className="title" style={{ color: "black", opacity: 0.87 }}>
-        {title}
+        {data.data.title}
       </h2>
-      <p className="star">☆ Star {star}</p>
-      <p className="description">{description}</p>
+      <p className="star">☆ Star {data.data.star}</p>
+      <p className="description">{data.data.description}</p>
     </div>
   );
 };

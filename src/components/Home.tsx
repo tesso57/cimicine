@@ -36,24 +36,14 @@ const Home: React.FC = () => {
         👨‍👩‍👧 みんなのロードマップ
       </h1>
       {allRoadmap.map((d, index) => (
-        <Card
-          title={d.data.title}
-          star={d.data.star}
-          description={d.data.description}
-          key={index}
-        />
+        <Card data={d} key={index} />
       ))}
       <h1 style={{ color: "white", margin: "24px 0 16px" }}>
         🔥 急上昇中のロードマップ
       </h1>
-      {trendMockData.map((d, index) => (
-        <Card
-          title={d.title}
-          star={d.star}
-          description={d.description}
-          key={index}
-        />
-      ))}
+      {/* {trendMockData.map((d, index) => (
+        <Card data={d} key={index} />
+      ))} */}
     </div>
   );
 };

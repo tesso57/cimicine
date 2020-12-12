@@ -14,7 +14,7 @@ import { db } from "../firebase";
 
 const EditRoadmap: React.FC = () => {
   const history = useHistory();
-  !history.location.state && history.goBack();
+  !history.location.state && history.push("/create");
   const { title, description } = history.location.state as {
     title: string;
     description: string;

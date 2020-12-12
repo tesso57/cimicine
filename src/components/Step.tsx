@@ -94,7 +94,7 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd, step, setValue }) => {
                 placeholder="Paste in https://..."
                 className="step__urlInput"
                 value={url}
-                onChange={(e) => setValue(e.target.value, "url")}
+                onChange={(e) => setUrl(e.target.value)}
               />
               <button
                 className="step__urlSubmit"
