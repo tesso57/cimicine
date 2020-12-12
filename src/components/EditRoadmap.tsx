@@ -52,7 +52,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
         createdAt: new Date(),
         star: 0,
         title: title,
-        caption: "Coming Soon",
+        description: "Coming Soon",
       },
       relationships: {
         author: {
