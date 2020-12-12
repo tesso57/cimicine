@@ -6,8 +6,6 @@ import {trendMockData} from "../utils/mock";
 import TextField from "@material-ui/core/TextField";
 
 const Home: React.FC = () => {
-
-
     return (
         <div className="home">
             <div className={"search"}>

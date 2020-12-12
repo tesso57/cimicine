@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React, {useContext, useEffect} from "react";
 import "./SignIn.css";
-import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
-import { AuthContext } from "./AuthProvider";
+import {withRouter} from "react-router";
+import {Link} from "react-router-dom";
+import {AuthContext} from "./AuthProvider";
 import TextField from "@material-ui/core/TextField";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -16,123 +16,130 @@ import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
 import "firebase/auth";
 
-const SignIn = ({ history }: any) => {
-  interface State {
-    email: string;
-    password: string;
-    showPassword: boolean;
-  }
+const SignIn = ({history}: any) => {
+    interface State {
+        email: string;
+        password: string;
+        showPassword: boolean;
+    }
 
-  const [values, setValues] = React.useState<State>({
-    email: "",
-    password: "",
-    showPassword: false,
-  });
+    const [values, setValues] = React.useState<State>({
+        email: "",
+        password: "",
+        showPassword: false,
+    });
 
-  const handleChange = (prop: keyof State) => (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
+    const handleChange = (prop: keyof State) => (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setValues({...values, [prop]: event.target.value});
+    };
 
-  const handleClickShowPassword = () => {
-    setValues({ ...values, showPassword: !values.showPassword });
-  };
+    const handleClickShowPassword = () => {
+        setValues({...values, showPassword: !values.showPassword});
+    };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
+    const handleMouseDownPassword = (
+        event: React.MouseEvent<HTMLButtonElement>
+    ) => {
+        event.preventDefault();
+    };
 
-  const { signin } = useContext(AuthContext);
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    signin(values.email, values.password, history);
-  };
+    const {signin, currentUser} = useContext(AuthContext);
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit} className="signInForm">
-        <h1>サインイン</h1>
-        <Divider variant="middle" />
-        <TextField
-          name="email"
-          size="small"
-          className="formInput"
-          fullWidth
-          variant="outlined"
-          label="メールアドレス"
-          placeholder="email@example.com"
-          value={values.email}
-          onChange={handleChange("email")}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <EmailIcon fontSize="small" />
-              </InputAdornment>
-            ),
-          }}
-        />
+    useEffect(() => {
+        console.log("useEffect")
+        if (currentUser) {
+            history.push('/')
+        }
+    }, [])
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        signin(values.email, values.password, history);
+    };
 
-        <TextField
-          name="password"
-          size="small"
-          className="formInput"
-          fullWidth
-          label="パスワード"
-          variant="outlined"
-          type={values.showPassword ? "text" : "password"}
-          value={values.password}
-          onChange={handleChange("password")}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <LockIcon fontSize="small" />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
+    return (
+        <div>
+            <form onSubmit={handleSubmit} className="signInForm">
+                <h1>サインイン</h1>
+                <Divider variant="middle"/>
+                <TextField
+                    name="email"
+                    size="small"
+                    className="formInput"
+                    fullWidth
+                    variant="outlined"
+                    label="メールアドレス"
+                    placeholder="email@example.com"
+                    value={values.email}
+                    onChange={handleChange("email")}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <EmailIcon fontSize="small"/>
+                            </InputAdornment>
+                        ),
+                    }}
+                />
+
+                <TextField
+                    name="password"
+                    size="small"
+                    className="formInput"
+                    fullWidth
+                    label="パスワード"
+                    variant="outlined"
+                    type={values.showPassword ? "text" : "password"}
+                    value={values.password}
+                    onChange={handleChange("password")}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <LockIcon fontSize="small"/>
+                            </InputAdornment>
+                        ),
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <Button
+                    className="signInButton"
+                    fullWidth
+                    variant="outlined"
+                    color="primary"
+                    type="submit"
                 >
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <Button
-          className="signInButton"
-          fullWidth
-          variant="outlined"
-          color="primary"
-          type="submit"
-        >
-          サインイン
-        </Button>
+                    サインイン
+                </Button>
 
-        <div className="toSignUp">
-          <ArrowRightIcon className="arrowIcon" />
-          <span>
+                <div className="toSignUp">
+                    <ArrowRightIcon className="arrowIcon"/>
+                    <span>
             アカウントをお持ちでない方は
             <Link to={"/signup"} className="linkStyle">
               こちら
             </Link>
           </span>
+                </div>
+            </form>
         </div>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default withRouter(SignIn);
