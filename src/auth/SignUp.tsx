@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import "./SignUp.css";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
@@ -52,7 +53,7 @@ const SignUp = ({ history }: any) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="signInForm">
+      <form onSubmit={handleSubmit} className="signUpForm">
         <h1>サインアップ</h1>
         <Divider variant="middle" />
         <TextField
@@ -111,7 +112,7 @@ const SignUp = ({ history }: any) => {
           }}
         />
         <Button
-          className="signInButton"
+          className="signUpButton"
           fullWidth
           variant="outlined"
           color="primary"
@@ -120,7 +121,7 @@ const SignUp = ({ history }: any) => {
           サインアップ
         </Button>
 
-        <div className="toSignUp">
+        <div className="toSignIn">
           <ArrowRightIcon className="arrowIcon" />
           <span>
             アカウントをお持ちの方は
