@@ -32,12 +32,13 @@ interface JsonTypes {
         };
     };
 }
-
+//@typescript-eslint/no-unused-vars
 const EditRoadmap: React.FC<EditRoadmapProps> = ({
                                                      title = "無題のロードマップ",
                                                      setTitle,
                                                  }) => {
     const history = useHistory();
+    // @typescript-eslint/no-unused-vars
     // const { currentUser } = useContext(AuthContext);
     const sampleData: JsonTypes = {
         data: {
