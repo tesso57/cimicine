@@ -36,8 +36,6 @@ const Dialog = (props: Props) => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log("title", event.target.title.value);
-    console.log("caption", event.target.caption.value);
     const isValidateTitle = validateRequired(
       event.target.title.value,
       "タイトルがありません"
