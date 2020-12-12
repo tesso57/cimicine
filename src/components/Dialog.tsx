@@ -28,10 +28,25 @@ const theme = createMuiTheme({
 const Dialog = (props: Props) => {
     const [isStart, setStart] = useState<boolean>(false);
 
+    const validateRequired = (property: any, message: string) => {
+        const err = property === "" || property === null ? [message] : null;
+        return err;
+    }
+
     const handleSubmit = (event: any) => {
         event.preventDefault()
-        console.log("title",event.target.title.value)
-        console.log("caption",event.target.caption.value)
+        console.log("title", event.target.title.value)
+        console.log("caption", event.target.caption.value)
+        const isValidateTitle = validateRequired(event.target.title.value, "タイトルがありません");
+        const isValidateCaption = validateRequired(event.target.caption.value, "説明文がありません")
+        if (isValidateTitle !== null) {
+            alert(isValidateTitle)
+            setStart(false)
+        }
+        if (isValidateCaption !== null) {
+            alert(isValidateCaption)
+            setStart(false)
+        }
     };
 
     useEffect(() => {
