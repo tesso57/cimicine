@@ -75,10 +75,15 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
   return (
     <div className="editRoadmap">
       <div className="nav">
-        <IconButton onClick={() => history.goBack()}>
-          <ArrowBackIcon style={{ color: "white" }} />
+        <div className="nav__backAndTitle">
+          <IconButton onClick={() => history.goBack()}>
+            <ArrowBackIcon style={{ color: "white" }} />
+          </IconButton>
+          <h1>{title}</h1>
+        </div>
+        <IconButton onClick={() => {}} style={{ marginRight: 16 }}>
+          <CloudUploadIcon style={{ color: "white" }} />
         </IconButton>
-        <h1>{title}</h1>
       </div>
       <div className="edit">
         <div className="edgePoint begin">
