@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./SignUp.css";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
@@ -31,12 +31,28 @@ const SignUp = ({ history }: any) => {
     showPassword: false,
     showPasswordConfirm: false,
   });
+  const [validity, setValidity] = React.useState(false);
+
+  const submitOk = () => {
+    if (
+      values.password !== values.passwordConfirm ||
+      values.password.length === 0 ||
+      values.passwordConfirm.length === 0
+    )
+      return false;
+
+    return true;
+  };
 
   const handleChange = (prop: keyof State) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setValues({ ...values, [prop]: event.target.value });
   };
+
+  useEffect(() => {
+    setValidity(submitOk);
+  });
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
@@ -122,13 +138,25 @@ const SignUp = ({ history }: any) => {
         <TextField
           name="passwordConfirm"
           size="small"
-          className="formInput"
+          className="formInput passwordConfirm"
           fullWidth
           label="パスワード(確認)"
           variant="outlined"
           type={values.showPasswordConfirm ? "text" : "password"}
           value={values.passwordConfirm}
           onChange={handleChange("passwordConfirm")}
+          error={
+            !validity &&
+            values.passwordConfirm.length !== 0 &&
+            values.password.length !== 0
+          }
+          helperText={
+            !validity &&
+            values.passwordConfirm.length !== 0 &&
+            values.password.length !== 0
+              ? "パスワードが一致していません。"
+              : "\u00a0"
+          }
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -162,6 +190,7 @@ const SignUp = ({ history }: any) => {
           variant="outlined"
           color="primary"
           type="submit"
+          disabled={!validity}
         >
           サインアップ
         </Button>
