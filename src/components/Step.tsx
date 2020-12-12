@@ -70,7 +70,12 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
             />
 
             {bookmark.map((d, i) => (
-              <a className="step__bookmarkItem" href={d}>
+              <a
+                className="step__bookmarkItem"
+                href={d}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
                   src={`https://s2.googleusercontent.com/s2/favicons?domain=${d}`}
                   alt={d}
@@ -81,7 +86,7 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
               </a>
             ))}
 
-            <form className="">
+            <form className="step__urlForm">
               <input
                 type="text"
                 placeholder="Paste in https://..."
