@@ -8,7 +8,6 @@ interface CardProps {
 }
 export const Card: React.FC<CardProps> = ({ data }) => {
   const history = useHistory();
-  r;
   return (
     <div className="card" onClick={() => history.push("view", data)}>
       <h2 className="title" style={{ color: "black", opacity: 0.87 }}>
