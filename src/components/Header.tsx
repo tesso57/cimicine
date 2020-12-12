@@ -16,6 +16,8 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 import { useHistory } from "react-router";
 import Dialog from "./Dialog";
+import {auth} from "../firebase/index";
+
 const DrawerMenu: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   return (
@@ -96,6 +98,19 @@ const Header: React.FC = () => {
     setDropDownOpen(false);
   };
 
+    //logout関数
+    const signout = () => {
+        try {
+            auth.onAuthStateChanged((user) => {
+                auth.signOut().then(() => {
+                    history.push("/")
+                });
+            })
+        } catch (error) {
+            alert(error)
+        }
+    }
+
   return (
     <div className="header">
       <IconButton onClick={() => setOpen(true)}>
@@ -140,7 +155,7 @@ const Header: React.FC = () => {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={dropDownOpen} id="dropDownMenu">
                   <MenuItem onClick={handleClose}>マイページ</MenuItem>
-                  <MenuItem onClick={handleClose}>ログアウト</MenuItem>
+                  <MenuItem onClick={signout}>ログアウト</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

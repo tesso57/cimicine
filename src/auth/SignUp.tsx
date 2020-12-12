@@ -52,7 +52,6 @@ const SignUp = ({history}: any) => {
         event.preventDefault();
     };
 
-    console.log("signup");
     const {signup, currentUser} = useContext(AuthContext);
 
     useEffect(() => {

@@ -8,20 +8,21 @@ import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Step from "./Step";
 import { uid } from "../utils/misc";
-import { AuthContext } from "../auth/AuthProvider";
 import { JsonTypes, StepFormType, StepType } from "../type";
 
 interface EditRoadmapProps {
   title?: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
 }
-
+//@typescript-eslint/no-unused-vars
 const EditRoadmap: React.FC<EditRoadmapProps> = ({
   title = "無題のロードマップ",
   setTitle,
 }) => {
   const history = useHistory();
+  // @typescript-eslint/no-unused-vars
   // const { currentUser } = useContext(AuthContext);
+
   const sampleData: JsonTypes = {
     data: {
       steps: [
@@ -92,7 +93,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
           <p>{title}</p>
           <PlayArrowIcon style={{ color: "var(--cimicine-main)" }} />
         </div>
-        <div className="border"></div>
+        <div className="border" />
         {data.map((step, index) => {
           const setStep = (changedItem: string, type: StepFormType) => {
             const temp = [...data];
