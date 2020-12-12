@@ -12,6 +12,7 @@ export type JsonTypes = {
         star: number;
         title: string;
         description: string;
+        uid: string;
     };
     relationships: {
         author: {
