@@ -8,9 +8,11 @@ import TextField from "@material-ui/core/TextField";
 const Home: React.FC = () => {
   const [allRoadmap, setAllRoadmap] = React.useState<any[]>([]);
   React.useEffect(() => {
-    db.collection("flows").onSnapshot((snapshot) =>
-      setAllRoadmap(snapshot.docs.map((doc) => doc.data()))
-    );
+    db.collection("flows")
+      .limit(20)
+      .onSnapshot((snapshot) =>
+        setAllRoadmap(snapshot.docs.map((doc) => doc.data()))
+      );
   });
   return (
     <div className="home">
