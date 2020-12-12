@@ -16,7 +16,7 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 import { useHistory } from "react-router";
 import Dialog from "./Dialog";
-import {auth} from "../firebase/index";
+import { auth } from "../firebase/index";
 
 const DrawerMenu: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -36,45 +36,45 @@ const DrawerMenu: React.FC = () => {
         open={open}
       />
 
-            <hr className="partition"/>
+      <hr className="partition" />
 
-            <div className="hotMaps">
-                <div className="hotMapsContent">
-                    <WhatshotIcon
-                        style={{color: "#ff1f1f"}}
-                        fontSize="large"
-                        className="hotMapsIcon"
-                    />
-                    <span>急上昇のロードマップ</span>
-                </div>
-            </div>
-
-            <div className="searchMaps">
-                <div className="searchMapsContent">
-                    <SearchIcon
-                        style={{color: "#007c40"}}
-                        fontSize="large"
-                        className="searchMapsIcon"
-                    />
-                    <span>ロードマップを探す</span>
-                </div>
-            </div>
+      <div className="hotMaps">
+        <div className="hotMapsContent">
+          <WhatshotIcon
+            style={{ color: "#ff1f1f" }}
+            fontSize="large"
+            className="hotMapsIcon"
+          />
+          <span>急上昇のロードマップ</span>
         </div>
-    );
+      </div>
+
+      <div className="searchMaps">
+        <div className="searchMapsContent">
+          <SearchIcon
+            style={{ color: "#007c40" }}
+            fontSize="large"
+            className="searchMapsIcon"
+          />
+          <span>ロードマップを探す</span>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const Header: React.FC = () => {
-    const [open, setOpen] = React.useState(false);
-    const toggleDrawer = (open: boolean) => (
-        event: React.KeyboardEvent | React.MouseEvent
-    ) => {
-        if (
-            event.type === "keydown" &&
-            ((event as React.KeyboardEvent).key === "Tab" ||
-                (event as React.KeyboardEvent).key === "Shift")
-        ) {
-            return;
-        }
+  const [open, setOpen] = React.useState(false);
+  const toggleDrawer = (open: boolean) => (
+    event: React.KeyboardEvent | React.MouseEvent
+  ) => {
+    if (
+      event.type === "keydown" &&
+      ((event as React.KeyboardEvent).key === "Tab" ||
+        (event as React.KeyboardEvent).key === "Shift")
+    ) {
+      return;
+    }
 
     setOpen(open);
   };
@@ -98,18 +98,18 @@ const Header: React.FC = () => {
     setDropDownOpen(false);
   };
 
-    //logout関数
-    const signout = () => {
-        try {
-            auth.onAuthStateChanged((user) => {
-                auth.signOut().then(() => {
-                    history.push("/")
-                });
-            })
-        } catch (error) {
-            alert(error)
-        }
+  //logout関数
+  const signout = () => {
+    try {
+      auth.onAuthStateChanged((user) => {
+        auth.signOut().then(() => {
+          history.push("/");
+        });
+      });
+    } catch (error) {
+      alert(error);
     }
+  };
 
   return (
     <div className="header">
@@ -141,7 +141,7 @@ const Header: React.FC = () => {
         role={undefined}
         transition
         disablePortal
-        style={{zIndex:100}}
+        style={{ zIndex: 100 }}
       >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -151,11 +151,11 @@ const Header: React.FC = () => {
                 placement === "bottom" ? "center top" : "center bottom",
             }}
           >
-            <Paper >
+            <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={dropDownOpen} id="dropDownMenu">
                   <MenuItem onClick={handleClose}>マイページ</MenuItem>
-                  <MenuItem onClick={signout}>ログアウト</MenuItem>
+                  <MenuItem onClick={signout}>サインアウト</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

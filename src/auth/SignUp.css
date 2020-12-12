@@ -11,12 +11,12 @@
   margin-bottom: 30px;
 }
 
-.signUpForm .MuiDivider-middle {
-  margin: 10px 0 40px;
+.signUpForm .passwordConfirm {
+  margin-bottom: 10px;
 }
 
-.signUpForm .signUpButton {
-  margin-top: -10px;
+.signUpForm .MuiDivider-middle {
+  margin: 10px 0 40px;
 }
 
 .toSignIn .arrowIcon,
