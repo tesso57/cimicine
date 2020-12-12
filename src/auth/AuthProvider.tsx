@@ -2,14 +2,15 @@ import React, {useState, useEffect} from "react";
 import * as H from 'history';
 import {auth} from "../firebase/index";
 
+
 interface Props {
-    signup: (email: string, password: string, history: H.History) => void
+    signup: (email: string, password: string, username: string, history: H.History) => void
     signin: (email: string, password: string, history: H.History) => void
-    currentUser: null | object
+    currentUser: any
 }
 
 const AuthContext = React.createContext<Props>({
-        signup: async (email: string, password: string, history: H.History) => {
+        signup: async (email: string, password: string, username: string, history: H.History) => {
         },
         signin: async (email: string, password: string, history: H.History) => {
         },
@@ -21,9 +22,13 @@ const AuthProvider: React.FC = ({children}) => {
     const [currentUser, setCurrentUser] = useState<null | object>(null);
 
     //signup関数
-    const signup = async (email: string, password: string, history: H.History) => {
+    const signup = async (email: string, password: string, username: string, history: H.History) => {
         try {
-            await auth.createUserWithEmailAndPassword(email, password);
+            await auth.createUserWithEmailAndPassword(email, password).then((tempAuth) => {
+                tempAuth.user?.updateProfile({
+                    displayName: username
+                })
+            });
             auth.onAuthStateChanged(user => setCurrentUser(user));
             history.push("/");
         } catch (error) {
@@ -31,7 +36,7 @@ const AuthProvider: React.FC = ({children}) => {
         }
     };
 
-    //login関数
+    //signin関数
     const signin = async (email: string, password: string, history: H.History) => {
         try {
             await auth.signInWithEmailAndPassword(email, password);
