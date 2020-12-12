@@ -14,17 +14,18 @@ import {db} from "../firebase";
 import {AuthContext} from "../auth/AuthProvider";
 
 const EditRoadmap: React.FC = () => {
-  const history = useHistory();
-  !history.location.state && history.goBack();
-  const { title, description } = history.location.state as {
-    title: string;
-    description: string;
-  };
+    const history = useHistory();
 
-  sampleData.data.title = title;
-  sampleData.data.description = description;
+    !history.location.state && history.goBack();
+    const {title, description} = history.location.state as {
+        title: string;
+        description: string;
+    };
 
-  const { currentUser } = useContext(AuthContext);
+    sampleData.data.title = title;
+    sampleData.data.description = description;
+
+    const {currentUser} = useContext(AuthContext);
 
     const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
     const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
@@ -45,14 +46,14 @@ const EditRoadmap: React.FC = () => {
     };
 
     const uploadFlow = () => {
-        if (currentUser !== null ) {
+        if (currentUser !== null) {
             const json: JsonTypes = {
                 data: {
                     steps: data,
                     createdAt: new Date(),
                     star: 0,
                     title: title,
-                    description: "Coming Soon",
+                    description: description,
                 },
                 relationships: {
                     author: {
