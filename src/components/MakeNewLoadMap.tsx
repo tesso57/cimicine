@@ -15,7 +15,6 @@ const MakeNewLoadMap: React.FC = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     const { title, description } = event.target.elements;
-    console.log(title.value, description.value);
     history.push({
       pathname: "/edit",
       state: {
