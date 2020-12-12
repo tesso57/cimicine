@@ -52,7 +52,7 @@ const SignUp = ({ history }: any) => {
 
   useEffect(() => {
     setValidity(submitOk);
-  });
+  }, [values.password, values.passwordConfirm]);
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
