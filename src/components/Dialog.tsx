@@ -1,18 +1,28 @@
 import React, {useEffect, useState} from "react"
 import Modal from '@material-ui/core/Modal';
-import "./dialog.css"
+import "./Dialog.css"
 import TextField from '@material-ui/core/TextField';
 import PlayCircleFilledSharpIcon from '@material-ui/icons/PlayCircleFilledSharp';
 import PauseCircleFilledSharpIcon from '@material-ui/icons/PauseCircleFilledSharp';
 import {IconButton} from "@material-ui/core";
 import Visualizer from "./visualizer";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
+import Button from "@material-ui/core/Button";
+import {createMuiTheme, ThemeProvider} from "@material-ui/core/styles";
 
 interface Props {
     handleClose: () => void
     handleOpen: () => void
     open: boolean
 }
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#007c40',
+        },
+    },
+});
 
 const Dialog = (props: Props) => {
 
@@ -24,11 +34,20 @@ const Dialog = (props: Props) => {
     }, [props.open])
     return (
         <div>
-            <div className="createButton" onClick={props.handleOpen}>
-                <div className="buttonContent">
-                    <NoteAddIcon fontSize="large" className="createMapsIcon"/>
-                    <span>作成</span>
-                </div>
+            <div className={"createButton"}>
+                <ThemeProvider theme={theme}>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        className={"buttonContent"}
+                        startIcon={<NoteAddIcon fontSize={"large"}/>}
+                        onClick={props.handleOpen}
+                        style={{color: 'white'}}
+                    >
+                        作成
+                    </Button>
+                </ThemeProvider>
             </div>
 
             <Modal

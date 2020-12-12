@@ -1,15 +1,14 @@
 import React from "react";
 import "./Header.css";
-
 import logo from "../img/logo.svg";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SearchIcon from "@material-ui/icons/Search";
 import { IconButton, Drawer } from "@material-ui/core";
-
 import { useHistory } from "react-router";
-import Dialog from "./dialog";
+import Dialog from "./Dialog";
+
 const Menu: React.FC = () => {
     const [open, setOpen] = React.useState(false);
   return (
