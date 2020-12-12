@@ -9,22 +9,23 @@ import {
   Divider,
   Tooltip,
 } from "@material-ui/core";
+import { StepFormType, StepType } from "../type";
 
 interface StepProps {
   open: boolean;
   onOpen: () => void;
   onAdd: () => void;
+  step: StepType;
+  setValue: (changedItem: string, type: StepFormType) => void;
 }
-const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
-  const [title, setTitle] = React.useState("");
-  const [caption, setCaption] = React.useState("");
+
+const Step: React.FC<StepProps> = ({ open, onOpen, onAdd, step, setValue }) => {
   const [url, setUrl] = React.useState("");
-  const [bookmark, setBookmark] = React.useState<string[]>([]);
 
   const register = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    setBookmark([...bookmark, url]);
+    setValue(url, "url");
     setUrl("");
   };
   return (
@@ -51,8 +52,8 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
               type="text"
               placeholder="Untitled"
               className="step__titleInput"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={step.title}
+              onChange={(e) => setValue(e.target.value, "title")}
               disabled={!open}
               autoFocus
             />
@@ -64,27 +65,28 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
             <textarea
               placeholder="Write the description here..."
               className="step__captionInput"
-              value={caption}
-              onChange={(e) => setCaption(e.target.value)}
+              value={step.body}
+              onChange={(e) => setValue(e.target.value, "body")}
               rows={5}
             />
 
-            {bookmark.map((d, i) => (
-              <a
-                className="step__bookmarkItem"
-                href={d}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img
-                  src={`https://s2.googleusercontent.com/s2/favicons?domain=${d}`}
-                  alt={d}
-                  key={i}
-                  className="step__bookmarkIcon"
-                />
-                <p className="step__bookmarkUrl">{d}</p>
-              </a>
-            ))}
+            {step.url &&
+              step.url.map((d, i) => (
+                <a
+                  className="step__bookmarkItem"
+                  href={d}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={`https://s2.googleusercontent.com/s2/favicons?domain=${d}`}
+                    alt={d}
+                    key={i}
+                    className="step__bookmarkIcon"
+                  />
+                  <p className="step__bookmarkUrl">{d}</p>
+                </a>
+              ))}
 
             <form className="step__urlForm">
               <input
@@ -92,12 +94,12 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
                 placeholder="Paste in https://..."
                 className="step__urlInput"
                 value={url}
-                onChange={(e) => setUrl(e.target.value)}
+                onChange={(e) => setValue(e.target.value, "url")}
               />
               <button
                 className="step__urlSubmit"
                 type="submit"
-                onClick={(e) => register(e)}
+                onClick={register}
               >
                 ブックマークを追加する
               </button>
