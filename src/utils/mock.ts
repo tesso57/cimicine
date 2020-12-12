@@ -38,10 +38,9 @@ export const sampleData: JsonTypes = {
   data: {
     steps: [
       {
-        title: "yarn/npmでインスコ",
-        body:
-          "npm i -save-dev style-loader css-loaderするといいみたい \n よくわからないけどやってみよ",
-        url: ["twitter.com", "https://qiita.com"],
+        title: "The First Step",
+        body: "",
+        url: [],
         uid: `${uid()}`,
       },
       {
@@ -60,7 +59,7 @@ export const sampleData: JsonTypes = {
 
     createdAt: new Date(),
     star: 0,
-    title: "CSS modulesをいれたい",
+    title: "",
     caption: "",
   },
   relationships: {
