@@ -13,7 +13,7 @@ const Home: React.FC = () => {
       .onSnapshot((snapshot) =>
         setAllRoadmap(snapshot.docs.map((doc) => doc.data()))
       );
-  });
+  },[]);
     return (
     <div className="home">
       <div className={"search"}>

@@ -61,11 +61,36 @@ export const sampleData: JsonTypes = {
     star: 0,
     title: "",
     description: "",
+    uid:""
   },
   relationships: {
     author: {
       displayName: "displayName",
       id: "23820",
+    },
+  },
+};
+
+export const initData: JsonTypes = {
+  data: {
+    steps: [
+      {
+        title: "",
+        body: "",
+        url: [],
+        uid: "",
+      }
+    ],
+    createdAt: new Date(),
+    star: 0,
+    title: "",
+    description: "",
+    uid:""
+  },
+  relationships: {
+    author: {
+      displayName: "",
+      id: "",
     },
   },
 };

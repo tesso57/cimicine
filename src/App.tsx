@@ -25,6 +25,7 @@ const App: React.FC = () => {
             <PrivateRoute exact path={"/edit"} component={EditRoadmap} />
             <PrivateRoute exact path={"/create"} component={MakeNewLoadMap} />
             <PrivateRoute exact path={"/view"} component={ViewRoadmap} />
+            <PrivateRoute path={"/view/:uid"} component={ViewRoadmap} />
             <PrivateRoute exact path={"/"} component={Home} />
             <Route component={NotFound} />
           </Switch>

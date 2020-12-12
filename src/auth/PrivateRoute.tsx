@@ -4,7 +4,7 @@ import {AuthContext} from "./AuthProvider";
 import SignIn from "./SignIn";
 
 interface Props {
-    component:React.FC
+    component:React.FC<any>
     [x:string]:any
 }
 
