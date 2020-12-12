@@ -9,13 +9,12 @@ import StepView from "./StepView";
 import { JsonTypes } from "../type";
 import { Star, StarOutline } from "@material-ui/icons";
 
-interface ViewRoadmapProps {
-  json: JsonTypes;
-}
-const ViewRoadmap: React.FC<ViewRoadmapProps> = ({ json }) => {
-  const { data } = json;
-  const steps = data.steps;
+const ViewRoadmap: React.FC = () => {
   const history = useHistory();
+  !history.location.state && history.push("/");
+  const { data } = history.location.state as JsonTypes;
+  const steps = data.steps;
+
   const [nowOpen, setNowOpen] = React.useState(data.steps[0].uid);
   const handleOpen = (uid: string) => {
     setNowOpen(uid);
