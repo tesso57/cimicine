@@ -17,13 +17,6 @@ import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import "firebase/auth";
 
 const SignIn = ({ history }: any) => {
-  const { signin } = useContext(AuthContext);
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    const { email, password } = event.target;
-    signin(email.value, password.value, history);
-  };
-
   interface State {
     email: string;
     password: string;
@@ -52,18 +45,27 @@ const SignIn = ({ history }: any) => {
     event.preventDefault();
   };
 
+  const { signin } = useContext(AuthContext);
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    signin(values.email, values.password, history);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="signInForm">
         <h1>サインイン</h1>
         <Divider variant="middle" />
         <TextField
+          name="email"
           size="small"
           className="formInput"
           fullWidth
           variant="outlined"
           label="メールアドレス"
           placeholder="email@example.com"
+          value={values.email}
+          onChange={handleChange("email")}
           InputLabelProps={{
             shrink: true,
           }}
@@ -77,6 +79,7 @@ const SignIn = ({ history }: any) => {
         />
 
         <TextField
+          name="password"
           size="small"
           className="formInput"
           fullWidth
@@ -113,6 +116,7 @@ const SignIn = ({ history }: any) => {
           fullWidth
           variant="outlined"
           color="primary"
+          type="submit"
         >
           サインイン
         </Button>
