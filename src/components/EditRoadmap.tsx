@@ -36,7 +36,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
   setTitle,
 }) => {
   const history = useHistory();
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
   const sampleData: JsonTypes = {
     data: {
       steps: [
