@@ -36,6 +36,7 @@
 .header__menu {
   background-color: white;
   width: 60vw;
+  max-width: 350px;
 }
 
 .header__menu .logo {
