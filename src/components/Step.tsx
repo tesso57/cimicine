@@ -70,7 +70,12 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
             />
 
             {bookmark.map((d, i) => (
-              <div className="step__bookmarkItem">
+              <a
+                className="step__bookmarkItem"
+                href={d}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
                   src={`https://s2.googleusercontent.com/s2/favicons?domain=${d}`}
                   alt={d}
@@ -78,23 +83,25 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
                   className="step__bookmarkIcon"
                 />
                 <p className="step__bookmarkUrl">{d}</p>
-              </div>
+              </a>
             ))}
 
-            <input
-              type="text"
-              placeholder="Paste in https://..."
-              className="step__urlInput"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-            />
-            <button
-              className="step__urlSubmit"
-              type="submit"
-              onClick={(e) => register(e)}
-            >
-              ブックマークを追加する
-            </button>
+            <form className="step__urlForm">
+              <input
+                type="text"
+                placeholder="Paste in https://..."
+                className="step__urlInput"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+              />
+              <button
+                className="step__urlSubmit"
+                type="submit"
+                onClick={(e) => register(e)}
+              >
+                ブックマークを追加する
+              </button>
+            </form>
           </AccordionDetails>
         </Accordion>
       </div>
