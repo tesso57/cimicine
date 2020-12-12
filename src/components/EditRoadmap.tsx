@@ -2,35 +2,18 @@ import React from "react";
 import "./EditRoadmap.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import PauseIcon from "@material-ui/icons/Pause";
-import {IconButton} from "@material-ui/core";
-import {useHistory} from "react-router-dom";
+import { IconButton } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import Step from "./Step";
-import {uid} from "../utils/misc";
+import { uid } from "../utils/misc";
+import { AuthContext } from "../auth/AuthProvider";
+import { JsonTypes, StepFormType, StepType } from "../type";
 
 interface EditRoadmapProps {
-    title?: string;
-    setTitle: React.Dispatch<React.SetStateAction<string>>;
-}
-
-interface StepType {
-    title: string;
-    body?: string;
-    url?: string[];
-    uid: string;
-}
-
-interface JsonTypes {
-    data: {
-        steps: StepType[];
-        createdAt: Date;
-    };
-    relationships: {
-        author: {
-            displayName: string;
-            id: string;
-        };
-    };
+  title?: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
 }
 //@typescript-eslint/no-unused-vars
 const EditRoadmap: React.FC<EditRoadmapProps> = ({
@@ -66,62 +49,103 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
             ],
             createdAt: new Date(),
         },
-        relationships: {
-            author: {
-                displayName: "displayName",
-                id: "23820",
-            },
+        {
+          title: "The Second Step",
+          body: "",
+          url: [],
+          uid: `${uid()}`,
         },
+        {
+          title: "The Third Step",
+          body: "",
+          url: [],
+          uid: `${uid()}`,
+        },
+      ],
+
+      createdAt: new Date(),
+    },
+    relationships: {
+      author: {
+        displayName: "displayName",
+        id: "23820",
+      },
+    },
+  };
+
+  const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
+  const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
+
+  const handleOpen = (uid: string) => {
+    setNowOpen(uid);
+  };
+  const handleAdd = (index: number) => {
+    const temp = [...data];
+    const emptyStep: StepType = {
+      title: "",
+      uid: `${uid()}`,
     };
 
-    const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
-    const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
+    temp.splice(index + 1, 0, emptyStep);
+    setData(temp);
+    handleOpen(emptyStep.uid);
+  };
 
-    const handleOpen = (uid: string) => {
-        setNowOpen(uid);
-    };
-    const handleAdd = (index: number) => {
-        const temp = [...data];
-        const emptyStep: StepType = {
-            title: "HOGEE",
-            uid: `${uid()}`,
-        };
-
-        temp.splice(index + 1, 0, emptyStep);
-        setData(temp);
-        handleOpen(emptyStep.uid);
-    };
-
-    return (
-        <div className="editRoadmap">
-            <div className="nav">
-                <IconButton onClick={() => history.goBack()}>
-                    <ArrowBackIcon style={{color: "white"}}/>
-                </IconButton>
-                <h1>{title}</h1>
-            </div>
-            <div className="edit">
-                <div className="edgePoint begin">
-                    <p>{title}</p>
-                    <PlayArrowIcon style={{color: "var(--cimicine-main)"}}/>
-                </div>
-                <div className="border"></div>
-                {data.map((step, index) => (
-                    <Step
-                        open={step.uid === nowOpen}
-                        onOpen={() => handleOpen(step.uid)}
-                        key={step.uid}
-                        onAdd={() => handleAdd(index)}
-                    />
-                ))}
-
-                <div className="edgePoint finish">
-                    <p>{title}</p>
-                    <PauseIcon style={{color: "var(--cimicine-main)"}}/>
-                </div>
-            </div>
+  return (
+    <div className="editRoadmap">
+      <div className="nav">
+        <div className="nav__backAndTitle">
+          <IconButton onClick={() => history.goBack()}>
+            <ArrowBackIcon style={{ color: "white" }} />
+          </IconButton>
+          <h1>{title}</h1>
         </div>
-    );
+        <IconButton onClick={() => {}} style={{ marginRight: 16 }}>
+          <CloudUploadIcon style={{ color: "white" }} />
+        </IconButton>
+      </div>
+      <div className="edit">
+        <div className="edgePoint begin">
+          <p>{title}</p>
+          <PlayArrowIcon style={{ color: "var(--cimicine-main)" }} />
+        </div>
+        <div className="border"></div>
+        {data.map((step, index) => {
+          const setStep = (changedItem: string, type: StepFormType) => {
+            const temp = [...data];
+            const replacedItem: StepType = step;
+            switch (type) {
+              case "title":
+                replacedItem.title = changedItem;
+                break;
+              case "body":
+                replacedItem.body = changedItem;
+                break;
+              case "url":
+                replacedItem.url?.push(changedItem);
+            }
+            temp.splice(index, 1, replacedItem);
+            setData(temp);
+          };
+          return (
+            <Step
+              open={step.uid === nowOpen}
+              onOpen={() => handleOpen(step.uid)}
+              key={step.uid}
+              onAdd={() => handleAdd(index)}
+              step={step}
+              setValue={setStep}
+            />
+          );
+        })}
+
+        <div className="edgePoint finish">
+          <p>{title}</p>
+          <PauseIcon style={{ color: "var(--cimicine-main)" }} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default EditRoadmap;
