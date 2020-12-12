@@ -59,7 +59,6 @@
 }
 .step__titleInput:disabled {
   background-color: unset;
-  color: lightgray;
   cursor: pointer;
 }
 
@@ -80,6 +79,7 @@
 .step__bookmarkItem:hover {
   opacity: 1;
 }
+
 .step__bookmarkIcon {
   width: 32px;
   object-fit: contain;
@@ -87,7 +87,10 @@
 }
 .step__bookmarkUrl {
 }
-
+.step__urlForm {
+  display: flex;
+  flex-direction: column;
+}
 .step__urlInput {
   margin-top: 10px;
   outline: none;
