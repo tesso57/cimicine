@@ -126,6 +126,7 @@ const Header: React.FC = () => {
         role={undefined}
         transition
         disablePortal
+        style={{zIndex:100}}
       >
         {({ TransitionProps, placement }) => (
           <Grow
@@ -135,7 +136,7 @@ const Header: React.FC = () => {
                 placement === "bottom" ? "center top" : "center bottom",
             }}
           >
-            <Paper>
+            <Paper >
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={dropDownOpen} id="dropDownMenu">
                   <MenuItem onClick={handleClose}>マイページ</MenuItem>
