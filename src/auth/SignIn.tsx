@@ -1,16 +1,22 @@
-import React, {useContext} from "react"
+import React, {useContext, useEffect} from "react"
 import {withRouter} from "react-router"
 import {Link} from "react-router-dom"
 import {AuthContext} from "./AuthProvider";
 import "firebase/auth"
 
 const SignIn = ({history}:any) => {
-    const {signin} = useContext(AuthContext)
+    const {signin,currentUser} = useContext(AuthContext)
     const handleSubmit = (event: any) => {
         event.preventDefault()
         const {email, password} = event.target;
         signin(email.value, password.value, history)
     };
+
+    useEffect(() => {
+        if (currentUser) {
+            history.push('/')
+        }
+    },[])
 
     return (
         <div>
