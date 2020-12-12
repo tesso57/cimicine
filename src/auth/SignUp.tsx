@@ -19,13 +19,17 @@ const SignUp = ({ history }: any) => {
   interface State {
     email: string;
     password: string;
+    passwordConfirm: string;
     showPassword: boolean;
+    showPasswordConfirm: boolean;
   }
 
   const [values, setValues] = React.useState<State>({
     email: "",
     password: "",
+    passwordConfirm: "",
     showPassword: false,
+    showPasswordConfirm: false,
   });
 
   const handleChange = (prop: keyof State) => (
@@ -36,6 +40,10 @@ const SignUp = ({ history }: any) => {
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleClickShowPasswordConfirm = () => {
+    setValues({ ...values, showPasswordConfirm: !values.showPasswordConfirm });
   };
 
   const handleMouseDownPassword = (
@@ -103,6 +111,43 @@ const SignUp = ({ history }: any) => {
                   edge="end"
                 >
                   {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField
+          name="passwordConfirm"
+          size="small"
+          className="formInput"
+          fullWidth
+          label="パスワード(確認)"
+          variant="outlined"
+          type={values.showPasswordConfirm ? "text" : "password"}
+          value={values.passwordConfirm}
+          onChange={handleChange("passwordConfirm")}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <LockIcon fontSize="small" />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPasswordConfirm}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPasswordConfirm ? (
+                    <Visibility />
+                  ) : (
+                    <VisibilityOff />
+                  )}
                 </IconButton>
               </InputAdornment>
             ),
