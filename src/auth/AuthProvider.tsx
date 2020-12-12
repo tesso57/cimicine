@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import * as H from 'history';
-import {auth} from "../firebase/index";
+import {auth} from "../firebase";
 
 
 interface Props {
