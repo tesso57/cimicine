@@ -8,7 +8,6 @@ import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Step from "./Step";
 import { uid } from "../utils/misc";
-import { AuthContext } from "../auth/AuthProvider";
 import { JsonTypes, StepFormType, StepType } from "../type";
 
 interface EditRoadmapProps {
@@ -24,54 +23,39 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
     // @typescript-eslint/no-unused-vars
     // const { currentUser } = useContext(AuthContext);
 
-    
+
     const sampleData: JsonTypes = {
         data: {
             steps: [
                 {
-                    title: "HTML",
-                    body: "hoge",
-                    url: ["twitter.com"],
+                    title: "The First Step",
+                    body: "",
+                    url: [],
                     uid: `${uid()}`,
                 },
                 {
-                    title: "CSS",
-                    body: "hogehoge",
-                    url: ["twitter.com"],
+                    title: "The Second Step",
+                    body: "",
+                    url: [],
                     uid: `${uid()}`,
                 },
                 {
-                    title: "JavaScript",
-                    body: "hogehogehoge",
-                    url: ["twitter.com"],
+                    title: "The Third Step",
+                    body: "",
+                    url: [],
                     uid: `${uid()}`,
                 },
             ],
+
             createdAt: new Date(),
         },
-        {
-          title: "The Second Step",
-          body: "",
-          url: [],
-          uid: `${uid()}`,
+        relationships: {
+            author: {
+                displayName: "displayName",
+                id: "23820",
+            },
         },
-        {
-          title: "The Third Step",
-          body: "",
-          url: [],
-          uid: `${uid()}`,
-        },
-      ],
-
-      createdAt: new Date(),
-    },
-    relationships: {
-      author: {
-        displayName: "displayName",
-        id: "23820",
-      },
-    },
-  };
+    };
 
   const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
   const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
@@ -109,7 +93,7 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
           <p>{title}</p>
           <PlayArrowIcon style={{ color: "var(--cimicine-main)" }} />
         </div>
-        <div className="border"></div>
+        <div className="border"/>
         {data.map((step, index) => {
           const setStep = (changedItem: string, type: StepFormType) => {
             const temp = [...data];
