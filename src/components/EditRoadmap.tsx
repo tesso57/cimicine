@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./EditRoadmap.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
@@ -12,21 +12,20 @@ import { JsonTypes, StepFormType, StepType } from "../type";
 import { sampleData } from "../utils/mock";
 import { db } from "../firebase";
 import ConfirmDialog from "./ConfirmDialog";
-import { AuthContext } from "../auth/AuthProvider";
 
-const EditRoadmap: React.FC = () => {
+interface EditRoadmapProps {
+  title?: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+}
+
+//@typescript-eslint/no-unused-vars
+const EditRoadmap: React.FC<EditRoadmapProps> = ({
+  title = "無題のロードマップ",
+  setTitle,
+}) => {
   const history = useHistory();
-
-  !history.location.state && history.goBack();
-  const { title, description } = history.location.state as {
-    title: string;
-    description: string;
-  };
-
-  sampleData.data.title = title;
-  sampleData.data.description = description;
-
-  const { currentUser } = useContext(AuthContext);
+  // @typescript-eslint/no-unused-vars
+  // const { currentUser } = useContext(AuthContext);
 
   const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
   const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
@@ -56,30 +55,29 @@ const EditRoadmap: React.FC = () => {
   };
 
   const uploadFlow = () => {
-    if (currentUser !== null) {
-      const json: JsonTypes = {
-        data: {
-          steps: data,
-          createdAt: new Date(),
-          star: 0,
-          title: title,
-          description: description,
+    console.log(data);
+    const json: JsonTypes = {
+      data: {
+        steps: data,
+        createdAt: new Date(),
+        star: 0,
+        title: title,
+        caption: "Coming Soon",
+      },
+      relationships: {
+        author: {
+          displayName: "harsssh",
+          id: "23456",
         },
-        relationships: {
-          author: {
-            displayName: currentUser.displayName as string,
-            id: currentUser.uid as string,
-          },
-        },
-      };
-      const docId = Math.random().toString(32).substring(2);
-      db.collection("flows")
-        .doc(docId)
-        .set(json)
-        .then((r) => {
-          history.push("/");
-        });
-    }
+      },
+    };
+    const docId = Math.random().toString(32).substring(2);
+    db.collection("flows")
+      .doc(docId)
+      .set(json)
+      .then((r) => {
+        history.push("/");
+      });
   };
 
   return (

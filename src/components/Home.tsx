@@ -28,12 +28,7 @@ const Home: React.FC = () => {
         🔥 急上昇中のロードマップ
       </h1>
       {trendMockData.map((d, index) => (
-        <Card
-          title={d.title}
-          star={d.star}
-          description={d.description}
-          key={index}
-        />
+        <Card title={d.title} star={d.star} caption={d.caption} key={index} />
       ))}
     </div>
   );

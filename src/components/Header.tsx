@@ -45,7 +45,7 @@ const DrawerMenu: React.FC = () => {
             fontSize="large"
             className="hotMapsIcon"
           />
-          <span>急上昇中のロードマップ</span>
+          <span>急上昇のロードマップ</span>
         </div>
       </div>
 

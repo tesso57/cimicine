@@ -5,31 +5,31 @@ export const trendMockData = [
   {
     title: "Frontend Developer Roadmap",
     star: 999999,
-    description:
+    caption:
       "Step by step guide to becoming a modern frontend developer in 2020",
   },
   {
     title: "Frontend Developer Roadmap",
     star: 999999,
-    description:
+    caption:
       "Step by step guide to becoming a modern frontend developer in 2020",
   },
   {
     title: "Frontend Developer Roadmap",
     star: 999999,
-    description:
+    caption:
       "Step by step guide to becoming a modern frontend developer in 2020",
   },
   {
     title: "Frontend Developer Roadmap",
     star: 999999,
-    description:
+    caption:
       "Step by step guide to becoming a modern frontend developer in 2020",
   },
   {
     title: "Frontend Developer Roadmap",
     star: 999999,
-    description:
+    caption:
       "Step by step guide to becoming a modern frontend developer in 2020",
   },
 ];
@@ -60,7 +60,7 @@ export const sampleData: JsonTypes = {
     createdAt: new Date(),
     star: 0,
     title: "",
-    description: "",
+    caption: "",
   },
   relationships: {
     author: {
