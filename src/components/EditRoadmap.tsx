@@ -14,7 +14,7 @@ import { db } from "../firebase";
 
 interface EditRoadmapProps {
   title?: string;
-  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setTitle?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 //@typescript-eslint/no-unused-vars
