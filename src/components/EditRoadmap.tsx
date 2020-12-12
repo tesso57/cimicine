@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React  from "react";
 import "./EditRoadmap.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
@@ -44,29 +44,28 @@ const EditRoadmap: React.FC<EditRoadmapProps> = ({
         handleOpen(emptyStep.uid);
     };
 
-    const uploadFlow = useCallback(() => {
-            console.log(data);
-            const json: JsonTypes = {
-                data: {
-                    steps: data,
-                    createdAt: new Date(),
-                    star: 0,
-                    title: title,
-                    caption: "Coming Soon"
-                },
-                relationships: {
-                    author: {
-                        displayName: "harsssh",
-                        id: "23456"
-                    }
+    const uploadFlow = () => {
+        console.log(data);
+        const json: JsonTypes = {
+            data: {
+                steps: data,
+                createdAt: new Date(),
+                star: 0,
+                title: title,
+                caption: "Coming Soon"
+            },
+            relationships: {
+                author: {
+                    displayName: "harsssh",
+                    id: "23456"
                 }
             }
-            const docId = Math.random().toString(32).substring(2);
-            db.collection('flows').doc(docId).set(json).then(r => {
-                history.push('/')
-            })
-        }, []
-    )
+        }
+        const docId = Math.random().toString(32).substring(2);
+        db.collection('flows').doc(docId).set(json).then(r => {
+            history.push('/')
+        })
+    }
 
     return (
         <div className="editRoadmap">
