@@ -12,7 +12,6 @@ import MakeNewLoadMap from "./components/MakeNewLoadMap";
 import Footer from "./components/Footer";
 import NotFound from "./auth/404";
 import ViewRoadmap from "./components/ViewRoadmap";
-import { sampleData } from "./utils/mock";
 
 const App: React.FC = () => {
   return (

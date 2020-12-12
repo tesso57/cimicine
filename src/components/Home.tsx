@@ -3,9 +3,7 @@ import React from "react";
 import { db } from "../firebase/index";
 import { Card } from "./Card";
 import "./Home.css";
-import { trendMockData } from "../utils/mock";
 import TextField from "@material-ui/core/TextField";
-import { JsonTypes } from "../type";
 
 const Home: React.FC = () => {
   const [allRoadmap, setAllRoadmap] = React.useState<any[]>([]);
@@ -38,7 +36,7 @@ const Home: React.FC = () => {
       {allRoadmap.map((d, index) => (
         <Card data={d} key={index} />
       ))}
-      <h1 style={{ color: "white", margin: "24px 0 16px" }}>
+      <h1 style={{ color: "white", margin: "24px 0 0 ", paddingBottom: 16 }}>
         🔥 急上昇中のロードマップ
       </h1>
       {/* {trendMockData.map((d, index) => (
