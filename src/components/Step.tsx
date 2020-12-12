@@ -81,20 +81,22 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd }) => {
               </a>
             ))}
 
-            <input
-              type="text"
-              placeholder="Paste in https://..."
-              className="step__urlInput"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-            />
-            <button
-              className="step__urlSubmit"
-              type="submit"
-              onClick={(e) => register(e)}
-            >
-              ブックマークを追加する
-            </button>
+            <form className="">
+              <input
+                type="text"
+                placeholder="Paste in https://..."
+                className="step__urlInput"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+              />
+              <button
+                className="step__urlSubmit"
+                type="submit"
+                onClick={(e) => register(e)}
+              >
+                ブックマークを追加する
+              </button>
+            </form>
           </AccordionDetails>
         </Accordion>
       </div>
