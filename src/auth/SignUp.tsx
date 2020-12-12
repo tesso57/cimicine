@@ -60,7 +60,7 @@ const SignUp = ({history}: any) => {
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});
     };
-    
+
     const handleClickShowPasswordConfirm = () => {
         setValues({...values, showPasswordConfirm: !values.showPasswordConfirm});
     };

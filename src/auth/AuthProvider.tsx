@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import * as H from 'history';
-import {auth, db} from "../firebase/index";
+import {auth} from "../firebase/index";
+
 
 interface Props {
     signup: (email: string, password: string, username: string, history: H.History) => void
@@ -24,7 +25,9 @@ const AuthProvider: React.FC = ({children}) => {
     const signup = async (email: string, password: string, username: string, history: H.History) => {
         try {
             await auth.createUserWithEmailAndPassword(email, password).then((tempAuth) => {
-                createUser(username, tempAuth.user?.uid)
+                tempAuth.user?.updateProfile({
+                    displayName: username
+                })
             });
             auth.onAuthStateChanged(user => setCurrentUser(user));
             history.push("/");
@@ -33,12 +36,7 @@ const AuthProvider: React.FC = ({children}) => {
         }
     };
 
-    const createUser = (username: string, uid: string | undefined) => {
-        if (uid === undefined) return null
-        return db.collection('UserID').doc(uid).set({username, uid});
-    }
-
-    //login関数
+    //signin関数
     const signin = async (email: string, password: string, history: H.History) => {
         try {
             await auth.signInWithEmailAndPassword(email, password);
