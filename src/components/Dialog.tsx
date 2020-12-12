@@ -15,6 +15,7 @@ interface Props {
   handleClose: () => void;
   handleOpen: () => void;
   open: boolean;
+  drawerClose: () => void;
 }
 
 const theme = createMuiTheme({
@@ -71,6 +72,7 @@ const Dialog = (props: Props) => {
             startIcon={<NoteAddIcon fontSize={"large"} />}
             // onClick={props.handleOpen}
             onClick={() => {
+              props.drawerClose();
               props.handleClose();
               history.push("/create");
             }}

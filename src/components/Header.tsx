@@ -18,7 +18,12 @@ import { useHistory } from "react-router";
 import Dialog from "./Dialog";
 import { auth } from "../firebase/index";
 
-const DrawerMenu: React.FC = () => {
+interface Props {
+    drawerClose : () => void;
+}
+
+
+const DrawerMenu  = (props: Props) => {
   const [open, setOpen] = React.useState(false);
   return (
     <div className="header__menu">
@@ -34,6 +39,7 @@ const DrawerMenu: React.FC = () => {
           setOpen(true);
         }}
         open={open}
+        drawerClose={props.drawerClose}
       />
 
       <hr className="partition" />
@@ -64,7 +70,7 @@ const DrawerMenu: React.FC = () => {
 };
 
 const Header: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean>(false);
   const toggleDrawer = (open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent
   ) => {
@@ -75,7 +81,6 @@ const Header: React.FC = () => {
     ) {
       return;
     }
-
     setOpen(open);
   };
   const history = useHistory();
@@ -163,7 +168,7 @@ const Header: React.FC = () => {
         )}
       </Popper>
       <Drawer open={open} anchor="left" onClose={toggleDrawer(false)}>
-        <DrawerMenu />
+        <DrawerMenu drawerClose={() => setOpen(false)}/>
       </Drawer>
     </div>
   );
