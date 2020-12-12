@@ -1,4 +1,4 @@
-import React, {useContext,useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import "./SignUp.css";
 import {withRouter} from "react-router";
 import {Link} from "react-router-dom";
@@ -59,7 +59,7 @@ const SignUp = ({history}: any) => {
         if (currentUser) {
             history.push('/')
         }
-    }, [])
+    }, [currentUser, history])
 
     const handleSubmit = (event: any) => {
         event.preventDefault();

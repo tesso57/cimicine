@@ -52,7 +52,7 @@ const SignIn = ({history}: any) => {
         if (currentUser) {
             history.push('/')
         }
-    }, [])
+    }, [currentUser,history])
     const handleSubmit = (event: any) => {
         event.preventDefault();
         signin(values.email, values.password, history);
