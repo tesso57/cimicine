@@ -10,6 +10,7 @@ export type JsonTypes = {
     steps: StepType[];
     createdAt: Date;
     star: number;
+    title: string;
   };
   relationships: {
     author: {
