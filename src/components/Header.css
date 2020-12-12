@@ -3,10 +3,11 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
+}
+.logoAndTitle {
   cursor: hand;
   cursor: pointer;
 }
-
 .MuiIconButton-root {
   margin: 4px !important;
 }
