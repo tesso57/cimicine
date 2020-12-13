@@ -1,19 +1,32 @@
 .card {
+  min-height: 80px;
+
   padding: 8px 16px;
   margin-bottom: 8px;
-  border-radius: 4px;
+  border-radius: 10px;
   background-color: white;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 10px;
 }
 .card:hover {
   background-color: white;
   opacity: 0.9;
 }
+.card > p {
+  font-size: 14px;
+}
 
 .star {
   font-size: 14px;
-  color: #191919;
+  font-weight: bold;
+  color: white;
+  background-color: lightcoral;
+  display: inline-block;
+
   margin-bottom: 8px;
+  padding: 4px;
+
+  border-radius: 10px;
 }
 .description {
   font-size: 14px;

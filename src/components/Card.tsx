@@ -10,7 +10,10 @@ export const Card: React.FC<CardProps> = ({ data }) => {
   const history = useHistory();
   return (
     <div className="card" onClick={() => history.push("view", data)}>
-      <h2 className="title" style={{ color: "black", opacity: 0.87 }}>
+      <h2
+        className="title"
+        style={{ color: "black", opacity: 0.87, fontSize: 18 }}
+      >
         {data.data.title}
       </h2>
       <p className="star">☆ Star {data.data.star}</p>
