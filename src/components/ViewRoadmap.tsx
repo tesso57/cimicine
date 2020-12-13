@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext, useCallback} from "react";
 import "./EditRoadmap.css";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
@@ -6,19 +6,23 @@ import PauseIcon from "@material-ui/icons/Pause";
 import {Checkbox, IconButton} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
 import StepView from "./StepView";
-import {JsonTypes, StepType} from "../type";
+import {JsonTypes, StepType, UserStaredList, StaredList} from "../type";
 import {Star, StarOutline} from "@material-ui/icons";
 import {RouteComponentProps} from 'react-router'
 import {db} from "../firebase";
-import {initData} from "../utils/mock";
+import {AuthContext} from "../auth/AuthProvider";
 
 type urlProps = {} & RouteComponentProps<{ uid: string }>;
 
 const ViewRoadmap: React.FC<urlProps> = (props) => {
     const history = useHistory();
     const [nowOpen, setNowOpen] = useState('');
-    const [data, setData] = useState<JsonTypes | undefined>(initData);
-    const [steps, setSteps] = useState<StepType[] | undefined>(initData.data.steps);
+    const [data, setData] = useState<JsonTypes | undefined>(undefined);
+    const [steps, setSteps] = useState<StepType[] | undefined>(undefined);
+    const [isStar, setIsStar] = useState<boolean>(false)
+    const [staredList, setStaredList] = useState<StaredList | undefined>(undefined)
+    const {currentUser} = useContext(AuthContext)
+    //各種データの取得
     useEffect(() => {
         let docRef = db.collection("flows").doc(props.match.params.uid)
         docRef.get().then((doc) => {
@@ -32,14 +36,67 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
         }).catch((error) => {
             alert(error)
         })
-    }, [history,props.match.params.uid]);
+        docRef = db.collection('StaredList').doc(currentUser.uid);
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                setStaredList(doc.data()?.list as StaredList)
+                if (doc.data()?.list.includes(data?.data.uid)) {
+                    setIsStar(true)
+                } else {
+                    setIsStar(false)
+                }
+            } else {
+                setIsStar(false)
+                //create New List
+                db.collection("StaredList")
+                    .doc(currentUser.uid)
+                    .set({list: ['']} as UserStaredList)
+                    .then((r) => {
+                        setStaredList([])
+                    });
+            }
+        }).catch((error) => {
+            alert('create')
+        })
+    }, [history, props.match.params.uid, currentUser.uid, data?.data.uid]);
+    const addStar = useCallback(() => {
+        if (data !== undefined) {
+            if (isStar) {
+                if (!staredList?.includes(data?.data.uid)) {
+                    staredList?.push(data?.data.uid);
+                    data.data.star += 1
+                } else {
+                }
+            } else {
+                if (staredList?.includes(data?.data.uid)) {
+                    staredList?.splice(staredList?.indexOf(data?.data.uid))
+                    data.data.star -= 1
+                }
+            }
+            let docRef = db.collection("flows").doc(props.match.params.uid)
+            docRef.update(data).then(r => {
+            }).catch((error) => alert('addStar'));
+
+            if (staredList !== undefined) {
+                docRef = db.collection('StaredList').doc(currentUser.uid);
+                docRef.update({list: staredList}).then(r => {
+                }).catch((error) => alert('List'));
+            }
+        }
+    }, [isStar, staredList,currentUser.uid,data,props.match.params.uid])
+
+    useEffect(() => {
+        addStar()
+    }, [isStar, addStar]);
+
     const handleOpen = (uid: string) => {
         setNowOpen(uid);
     };
 
+
     return (
         <>
-            {(!data) ? (
+            {(data === undefined || steps === undefined) ? (
                 <h1>Now Loading...</h1>
             ) : (
                 <div className="editRoadmap">
@@ -54,6 +111,8 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
                             icon={<StarOutline style={{color: "white"}}/>}
                             checkedIcon={<Star style={{color: "yellow"}}/>}
                             style={{marginRight: 16}}
+                            checked={isStar}
+                            onChange={() => setIsStar(!isStar)}
                         />
                     </div>
                     <div className="edit">
@@ -62,16 +121,15 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
                             <PlayArrowIcon style={{color: "var(--cimicine-main)"}}/>
                         </div>
                         <div className="border"/>
-
-                        {// @ts-ignore
+                        {
                             steps.map((step: StepType) => (
-                            <StepView
-                                open={step.uid === nowOpen}
-                                onOpen={() => handleOpen(step.uid)}
-                                key={step.uid}
-                                step={step}
-                            />
-                        ))}
+                                <StepView
+                                    open={step.uid === nowOpen}
+                                    onOpen={() => handleOpen(step.uid)}
+                                    key={step.uid}
+                                    step={step}
+                                />
+                            ))}
 
                         <div className="edgePoint finish">
                             <p>{data.data.title}</p>
