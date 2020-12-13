@@ -57,6 +57,7 @@ const DrawerMenu = (props: Props) => {
             startIcon={<ExitToAppIcon fontSize={"large"} />}
             onClick={() => {
               history.push("/signin");
+              props.drawerClose();
             }}
             style={{ fontWeight: "bold" }}
           >
@@ -64,7 +65,11 @@ const DrawerMenu = (props: Props) => {
           </Button>
           <div className="drawerToSignup">
             または
-            <Link to="/signup" className="toSignUpLink">
+            <Link
+              to="/signup"
+              className="toSignUpLink"
+              onClick={props.drawerClose}
+            >
               登録
             </Link>
             する
