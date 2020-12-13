@@ -8,8 +8,8 @@ import { IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Step from "./Step";
 import { uid } from "../utils/misc";
-import { JsonTypes, StepFormType, StepType } from "../type";
-import {initData} from "../utils/mock";
+import { JsonTypes, StepFormType, StepType, UserType } from "../type";
+import { initData } from "../utils/mock";
 import { db } from "../firebase";
 import { AuthContext } from "../auth/AuthProvider";
 
@@ -54,7 +54,7 @@ const EditRoadmap: React.FC = () => {
           star: 0,
           title: title,
           description: description,
-          uid : docId
+          uid: docId,
         },
         relationships: {
           author: {
@@ -63,12 +63,31 @@ const EditRoadmap: React.FC = () => {
           },
         },
       };
-
+      db.collection("users")
+        .doc(currentUser.uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            let temp = doc.data() as UserType;
+            if (temp !== undefined && json !== undefined) {
+              temp.createdRoadmaps.push(json);
+              db.collection("users")
+                .doc(currentUser.uid)
+                .update(temp)
+                .catch((error) => alert("EditRoadmap"));
+            }
+          } else {
+            db.collection("users")
+              .doc(currentUser.uid)
+              .set({ createdRoadmaps: [json], staredList: [] } as UserType)
+              .catch((error) => alert("create userCollection error"));
+          }
+        });
       db.collection("flows")
         .doc(docId)
         .set(json)
         .then((r) => {
-          console.log('https://cimicine-flow.web.app/view/' + docId)
+          console.log("https://cimicine-flow.web.app/view/" + docId);
           history.push("/");
         });
     }

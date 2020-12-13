@@ -30,5 +30,5 @@ export type UserType = {
   staredList: {
     roadmap: string; // roadmap uid
     progress: number;
-  };
+  }[];
 };
