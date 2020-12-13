@@ -19,7 +19,7 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
     const [nowOpen, setNowOpen] = useState('');
     const [data, setData] = useState<JsonTypes | undefined>(undefined);
     const [steps, setSteps] = useState<StepType[] | undefined>(undefined);
-    const [isStar, setIsStar] = useState<boolean>(false)
+    const [isStar, setIsStar] = useState<boolean | undefined>(undefined)
     const [staredList, setStaredList] = useState<StaredList | undefined>(undefined)
     const {currentUser} = useContext(AuthContext)
     //各種データの取得
@@ -39,18 +39,21 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
         docRef = db.collection('StaredList').doc(currentUser.uid);
         docRef.get().then((doc) => {
             if (doc.exists) {
-                setStaredList(doc.data()?.list as StaredList)
-                if (doc.data()?.list.includes(data?.data.uid)) {
-                    setIsStar(true)
-                } else {
-                    setIsStar(false)
+                let temp = doc.data()
+                if (temp !== undefined && data !== undefined) {
+                    setStaredList(temp.list as StaredList)
+                    if (temp.list.includes(data.data.uid)) {
+                        setIsStar(true)
+                    } else {
+                        setIsStar(false)
+                    }
                 }
             } else {
                 setIsStar(false)
-                //create New List
+                console.log('create New')
                 db.collection("StaredList")
                     .doc(currentUser.uid)
-                    .set({list: ['']} as UserStaredList)
+                    .set({list: []} as UserStaredList)
                     .then((r) => {
                         setStaredList([])
                     });
@@ -58,32 +61,28 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
         }).catch((error) => {
             alert('create')
         })
-    }, [history, props.match.params.uid, currentUser.uid, data?.data.uid]);
+    }, [history, props.match.params.uid, currentUser.uid, data]);
     const addStar = useCallback(() => {
-        if (data !== undefined) {
+        if (data !== undefined && staredList !== undefined && isStar !== undefined) {
             if (isStar) {
-                if (!staredList?.includes(data?.data.uid)) {
+                if (!staredList.includes(data.data.uid)) {
                     staredList?.push(data?.data.uid);
                     data.data.star += 1
-                } else {
                 }
             } else {
-                if (staredList?.includes(data?.data.uid)) {
-                    staredList?.splice(staredList?.indexOf(data?.data.uid))
+                if (staredList.includes(data.data.uid)) {
+                    staredList.splice(staredList.indexOf(data.data.uid))
                     data.data.star -= 1
                 }
             }
             let docRef = db.collection("flows").doc(props.match.params.uid)
             docRef.update(data).then(r => {
             }).catch((error) => alert('addStar'));
-
-            if (staredList !== undefined) {
-                docRef = db.collection('StaredList').doc(currentUser.uid);
-                docRef.update({list: staredList}).then(r => {
-                }).catch((error) => alert('List'));
-            }
+            docRef = db.collection('StaredList').doc(currentUser.uid);
+            docRef.update({list: staredList}).then(r => {
+            }).catch((error) => alert('List'));
         }
-    }, [isStar, staredList,currentUser.uid,data,props.match.params.uid])
+    }, [isStar, staredList, currentUser.uid, data, props.match.params.uid])
 
     useEffect(() => {
         addStar()
@@ -96,7 +95,7 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
 
     return (
         <>
-            {(data === undefined || steps === undefined) ? (
+            {(data === undefined || steps === undefined || isStar === undefined) ? (
                 <h1>Now Loading...</h1>
             ) : (
                 <div className="editRoadmap">
@@ -112,7 +111,7 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
                             checkedIcon={<Star style={{color: "yellow"}}/>}
                             style={{marginRight: 16}}
                             checked={isStar}
-                            onChange={() => setIsStar(!isStar)}
+                            onClick={() => setIsStar(!isStar)}
                         />
                     </div>
                     <div className="edit">
