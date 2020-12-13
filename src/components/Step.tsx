@@ -59,7 +59,7 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd, step, setValue }) => {
             />
           </AccordionSummary>
           <AccordionDetails
-            style={{ display: "flex", flexDirection: "column" }}
+            style={{ display: "flex", flexDirection: "column", width: "100%" }}
           >
             <Divider style={{ marginBottom: 8 }} />
             <textarea

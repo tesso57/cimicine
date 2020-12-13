@@ -24,6 +24,7 @@
 .step__accordion {
   margin-left: 16px;
   flex-grow: 1;
+  width: 100%;
 }
 .step__title {
   font-size: 18px;
@@ -75,6 +76,8 @@
 
   text-decoration: none;
   color: black;
+  max-width: 100%;
+  overflow: scroll;
 }
 .step__bookmarkItem:hover {
   opacity: 1;
