@@ -1,0 +1,8 @@
+.uploadButton {
+  color: #fff !important;
+  background-color: var(--cimicine-main) !important;
+}
+
+.uploadButton:hover {
+  background-color: rgb(0, 86, 44) !important;
+}
