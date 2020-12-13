@@ -23,8 +23,8 @@
 
 .step__accordion {
   margin-left: 16px;
-  flex-grow: 1;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
 }
 .step__title {
   font-size: 18px;

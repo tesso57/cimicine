@@ -46,7 +46,7 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd, step, setValue }) => {
         }}
       />
       <div className="step__accordion">
-        <Accordion style={{ boxShadow: "none" }} expanded={open}>
+        <Accordion style={{ boxShadow: "none", width: "100%" }} expanded={open}>
           <AccordionSummary onClick={() => !open && onOpen()}>
             <input
               type="text"
