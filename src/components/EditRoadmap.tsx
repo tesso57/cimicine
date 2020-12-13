@@ -12,6 +12,7 @@ import { JsonTypes, StepFormType, StepType, UserType } from "../type";
 import { initData } from "../utils/mock";
 import { db } from "../firebase";
 import { AuthContext } from "../auth/AuthProvider";
+import ConfirmDialog from "./ConfirmDialog";
 
 const EditRoadmap: React.FC = () => {
   const history = useHistory();
@@ -28,6 +29,15 @@ const EditRoadmap: React.FC = () => {
 
   const [nowOpen, setNowOpen] = React.useState(initData.data.steps[0].uid);
   const [data, setData] = React.useState<StepType[]>(initData.data.steps);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
 
   const handleOpen = (uid: string) => {
     setNowOpen(uid);
@@ -102,7 +112,7 @@ const EditRoadmap: React.FC = () => {
           </IconButton>
           <h1>{title}</h1>
         </div>
-        <IconButton onClick={uploadFlow} style={{ marginRight: 16 }}>
+        <IconButton onClick={handleDialogOpen} style={{ marginRight: 16 }}>
           <CloudUploadIcon style={{ color: "white" }} />
         </IconButton>
       </div>
@@ -145,6 +155,12 @@ const EditRoadmap: React.FC = () => {
           <p>{title}</p>
           <PauseIcon style={{ color: "var(--cimicine-main)" }} />
         </div>
+
+        <ConfirmDialog
+          open={dialogOpen}
+          handleClose={handleDialogClose}
+          setFunc={uploadFlow}
+        />
       </div>
     </div>
   );
