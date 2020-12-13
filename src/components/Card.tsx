@@ -9,7 +9,10 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({ data }) => {
   const history = useHistory();
   return (
-    <div className="card" onClick={() => history.push("view/" + data.data.uid)}>
+    <div
+      className="card"
+      onClick={() => history.push("/view/" + data.data.uid)}
+    >
       <h2
         className="title"
         style={{ color: "black", opacity: 0.87, fontSize: 18 }}
