@@ -39,7 +39,6 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
         docRef = db.collection('StaredList').doc(currentUser.uid);
         docRef.get().then((doc) => {
             if (doc.exists) {
-                console.log(doc.data())
                 setStaredList(doc.data()?.list as StaredList)
                 if (doc.data()?.list.includes(data?.data.uid)) {
                     setIsStar(true)
@@ -59,7 +58,7 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
         }).catch((error) => {
             alert('create')
         })
-    }, [history, props.match.params.uid]);
+    }, [history, props.match.params.uid, currentUser.uid, data?.data.uid]);
     const addStar = useCallback(() => {
         if (data !== undefined) {
             if (isStar) {
@@ -84,7 +83,7 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
                 }).catch((error) => alert('List'));
             }
         }
-    }, [isStar,staredList])
+    }, [isStar, staredList,currentUser.uid,data,props.match.params.uid])
 
     useEffect(() => {
         addStar()
