@@ -34,13 +34,15 @@ const Home: React.FC = () => {
       </div>
       <h1
         style={{
-          color: "white",
+          color: "#383838",
           margin: "24px 0 16px",
+          fontFamily: "HiraKakuProN-W3",
+          borderBottom: "1px solid lightgray",
           // padding: 4,
           // backgroundColor: "white",
         }}
       >
-        みんなのロードマップ
+        🛫 最新ロードマップ
       </h1>
       <div className="home__cardContainer">
         {allRoadmap.map((d, index) => (

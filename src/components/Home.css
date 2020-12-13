@@ -1,7 +1,8 @@
 .home {
   min-height: 100vh;
   padding: 32px 16px 0;
-  background-color: rgb(11, 61, 40);
+
+  background-color: rgb(240, 240, 240);
 }
 .search {
   background-color: white;
