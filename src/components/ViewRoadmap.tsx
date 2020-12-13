@@ -6,31 +6,14 @@ import PauseIcon from "@material-ui/icons/Pause";
 import { Checkbox, IconButton } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import StepView from "./StepView";
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-import {JsonTypes, StepType, UserStaredList, StaredList} from "../type";
-import {Star, StarOutline} from "@material-ui/icons";
-import {RouteComponentProps} from 'react-router'
-import {db} from "../firebase";
-import {AuthContext} from "../auth/AuthProvider";
-=======
->>>>>>> Stashed changes
 import { JsonTypes, StepType, UserStaredList, StaredList } from "../type";
 import { Star, StarOutline } from "@material-ui/icons";
 import { RouteComponentProps } from "react-router";
 import { db } from "../firebase";
 import { AuthContext } from "../auth/AuthProvider";
-<<<<<<< Updated upstream
-import { Icon, InlineIcon } from '@iconify/react';
-import twitterIcon from '@iconify-icons/mdi/twitter';
-
-=======
 import { Icon } from '@iconify/react';
 import twitterIcon from '@iconify-icons/mdi/twitter';
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 type urlProps = {} & RouteComponentProps<{ uid: string }>;
 
