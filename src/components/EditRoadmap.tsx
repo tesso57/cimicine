@@ -134,7 +134,11 @@ const EditRoadmap: React.FC = () => {
                 replacedItem.body = changedItem;
                 break;
               case "url":
-                replacedItem.url?.push(changedItem);
+                replacedItem.url
+                  ? replacedItem.url?.push(changedItem)
+                  : (replacedItem.url = [changedItem]);
+
+                console.log(replacedItem);
             }
             temp.splice(index, 1, replacedItem);
             setData(temp);

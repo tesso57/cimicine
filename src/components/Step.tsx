@@ -77,11 +77,11 @@ const Step: React.FC<StepProps> = ({ open, onOpen, onAdd, step, setValue }) => {
                   href={d}
                   target="_blank"
                   rel="noreferrer"
+                  key={i}
                 >
                   <img
                     src={`https://s2.googleusercontent.com/s2/favicons?domain=${d}`}
                     alt={d}
-                    key={i}
                     className="step__bookmarkIcon"
                   />
                   <p className="step__bookmarkUrl">{d}</p>
