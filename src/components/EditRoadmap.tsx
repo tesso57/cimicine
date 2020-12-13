@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import Step from "./Step";
 import { uid } from "../utils/misc";
 import { JsonTypes, StepFormType, StepType } from "../type";
-import { sampleData } from "../utils/mock";
+import {initData} from "../utils/mock";
 import { db } from "../firebase";
 import { AuthContext } from "../auth/AuthProvider";
 
@@ -21,13 +21,13 @@ const EditRoadmap: React.FC = () => {
     description: string;
   };
 
-  sampleData.data.title = title;
-  sampleData.data.description = description;
+  initData.data.title = title;
+  initData.data.description = description;
 
   const { currentUser } = useContext(AuthContext);
 
-  const [nowOpen, setNowOpen] = React.useState(sampleData.data.steps[0].uid);
-  const [data, setData] = React.useState<StepType[]>(sampleData.data.steps);
+  const [nowOpen, setNowOpen] = React.useState(initData.data.steps[0].uid);
+  const [data, setData] = React.useState<StepType[]>(initData.data.steps);
 
   const handleOpen = (uid: string) => {
     setNowOpen(uid);

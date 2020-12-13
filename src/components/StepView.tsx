@@ -45,7 +45,6 @@ const StepView: React.FC<StepProps> = ({ open, onOpen, step }) => {
           >
             <Divider style={{ marginBottom: 8 }} />
             <textarea
-              placeholder="Write the description here..."
               className="step__captionInput"
               value={step.body}
               rows={5}
