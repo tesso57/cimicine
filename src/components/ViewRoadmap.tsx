@@ -40,9 +40,9 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
         docRef.get().then((doc) => {
             if (doc.exists) {
                 let temp = doc.data()
-                if (temp !== undefined && data !== undefined) {
+                if (temp !== undefined && data?.data.uid !== undefined) {
                     setStaredList(temp.list as StaredList)
-                    if (temp.list.includes(data.data.uid)) {
+                    if (temp.list.includes(data?.data.uid)) {
                         setIsStar(true)
                     } else {
                         setIsStar(false)
@@ -61,16 +61,26 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
         }).catch((error) => {
             alert('create')
         })
-    }, [history, props.match.params.uid, currentUser.uid, data]);
+    }, [history, props.match.params.uid, currentUser.uid, data?.data.uid]);
     const addStar = useCallback(() => {
+        // console.log('render')
+        // console.log('----------')
+        // console.log('isStar', isStar)
+        // console.log('starList', staredList)
+        // console.log('uid', currentUser.uid,)
+        // console.log('data', data)
+        // console.log('path', props.match.params.uid)
         if (data !== undefined && staredList !== undefined && isStar !== undefined) {
             if (isStar) {
+                // console.log('state', staredList.includes(data.data.uid))
                 if (!staredList.includes(data.data.uid)) {
+                    // console.warn('add')
                     staredList?.push(data?.data.uid);
                     data.data.star += 1
                 }
             } else {
                 if (staredList.includes(data.data.uid)) {
+                    // console.warn('delete')
                     staredList.splice(staredList.indexOf(data.data.uid))
                     data.data.star -= 1
                 }
@@ -82,6 +92,7 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
             docRef.update({list: staredList}).then(r => {
             }).catch((error) => alert('List'));
         }
+        // console.log('----------')
     }, [isStar, staredList, currentUser.uid, data, props.match.params.uid])
 
     useEffect(() => {
