@@ -85,8 +85,7 @@
   object-fit: contain;
   margin-right: 16px;
 }
-.step__bookmarkUrl {
-}
+
 .step__urlForm {
   display: flex;
   flex-direction: column;
