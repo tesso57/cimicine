@@ -32,8 +32,10 @@ const Profile = () => {
   }, [currentUser]);
   return (
     <div className="profile">
-      <h1>{currentUser.displayName}</h1>
-      <p className="star">★ Star {user?.staredList.length}</p>
+      <div className="profile__detail">
+        <h1>{currentUser.displayName}</h1>
+        <p className="profile__star">★ Star {user?.staredList.length}</p>
+      </div>
       <h2>投稿したロードマップ</h2>
       <div className="home__cardContainer">
         {user?.createdRoadmaps.map((d, index) => (
