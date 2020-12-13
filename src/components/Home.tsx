@@ -44,15 +44,13 @@ const Home: React.FC = () => {
       </h1>
       <div className="home__cardContainer">
         {allRoadmap.map((d, index) => (
+          // @ts-ignore
           <Card data={d} key={index} />
         ))}
       </div>
       <h1 style={{ color: "white", margin: "24px 0 0 ", paddingBottom: 16 }}>
         🔥 急上昇中のロードマップ
       </h1>
-      {/* {trendMockData.map((d, index) => (
-        <Card data={d} key={index} />
-      ))} */}
     </div>
   );
 };

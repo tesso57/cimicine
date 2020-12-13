@@ -45,6 +45,7 @@ const EditRoadmap: React.FC = () => {
   };
 
   const uploadFlow = () => {
+    const docId = Math.random().toString(32).substring(2);
     if (currentUser !== null) {
       const json: JsonTypes = {
         data: {
@@ -53,6 +54,7 @@ const EditRoadmap: React.FC = () => {
           star: 0,
           title: title,
           description: description,
+          uid : docId
         },
         relationships: {
           author: {
@@ -61,11 +63,12 @@ const EditRoadmap: React.FC = () => {
           },
         },
       };
-      const docId = Math.random().toString(32).substring(2);
+
       db.collection("flows")
         .doc(docId)
         .set(json)
         .then((r) => {
+          console.log('https://cimicine-flow.web.app/view/' + docId)
           history.push("/");
         });
     }

@@ -12,6 +12,7 @@ export type JsonTypes = {
         star: number;
         title: string;
         description: string;
+        uid: string;
     };
     relationships: {
         author: {
@@ -20,3 +21,7 @@ export type JsonTypes = {
         };
     };
 };
+
+export type StaredList = string[]
+
+export type UserStaredList = {list : StaredList}

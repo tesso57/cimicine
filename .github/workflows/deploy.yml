@@ -21,7 +21,7 @@ jobs:
         run : yarn
 
       - name: Build React App
-        run : yarn build
+        run : yarn build -p
 
       - name: Setup Firebase CLI
         run : npm install -g firebase-tools
