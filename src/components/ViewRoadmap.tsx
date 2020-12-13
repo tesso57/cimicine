@@ -71,20 +71,24 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
         // console.log('data', data)
         // console.log('path', props.match.params.uid)
         if (data !== undefined && staredList !== undefined && isStar !== undefined) {
+            const tempList = staredList;
+            const tempData = data
             if (isStar) {
                 // console.log('state', staredList.includes(data.data.uid))
-                if (!staredList.includes(data.data.uid)) {
+                if (!tempList.includes(data.data.uid)) {
                     // console.warn('add')
-                    staredList?.push(data?.data.uid);
-                    data.data.star += 1
+                    tempList?.push(data?.data.uid);
+                    tempData.data.star += 1
                 }
             } else {
-                if (staredList.includes(data.data.uid)) {
+                if (tempList.includes(data.data.uid)) {
                     // console.warn('delete')
-                    staredList.splice(staredList.indexOf(data.data.uid))
-                    data.data.star -= 1
+                    tempList.splice(staredList.indexOf(data.data.uid))
+                    tempData.data.star -= 1
                 }
             }
+            setStaredList(tempList)
+            setData(tempData)
             let docRef = db.collection("flows").doc(props.match.params.uid)
             docRef.update(data).then(r => {
             }).catch((error) => alert('addStar'));
