@@ -5,7 +5,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SearchIcon from "@material-ui/icons/Search";
-
+import Button from "@material-ui/core/Button";
 import { IconButton, Drawer } from "@material-ui/core";
 import MenuList from "@material-ui/core/MenuList";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -13,11 +13,12 @@ import Popper from "@material-ui/core/Popper";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useHistory } from "react-router";
 import Dialog from "./Dialog";
 import { auth } from "../firebase/index";
 import { AuthContext } from "../auth/AuthProvider";
+import { Link } from "react-router-dom";
 
 interface Props {
   drawerClose: () => void;
@@ -25,22 +26,55 @@ interface Props {
 
 const DrawerMenu = (props: Props) => {
   const [open, setOpen] = React.useState(false);
+  const { currentUser } = useContext(AuthContext);
+  const history = useHistory();
+
   return (
     <div className="header__menu">
       <svg viewBox="0 0 500 500" className="logo">
         <use xlinkHref={`${logo}#logo`} />
       </svg>
 
-      <Dialog
-        handleClose={() => {
-          setOpen(false);
-        }}
-        handleOpen={() => {
-          setOpen(true);
-        }}
-        open={open}
-        drawerClose={props.drawerClose}
-      />
+      {currentUser !== null ? (
+        <Dialog
+          handleClose={() => {
+            setOpen(false);
+          }}
+          handleOpen={() => {
+            setOpen(true);
+          }}
+          open={open}
+          drawerClose={props.drawerClose}
+        />
+      ) : (
+        <div className="drawerNotUser">
+          <Button
+            className="drawerSigninButton"
+            variant="outlined"
+            color="primary"
+            size="large"
+            startIcon={<ExitToAppIcon fontSize={"large"} />}
+            onClick={() => {
+              history.push("/signin");
+              props.drawerClose();
+            }}
+            style={{ fontWeight: "bold" }}
+          >
+            サインイン
+          </Button>
+          <div className="drawerToSignup">
+            または
+            <Link
+              to="/signup"
+              className="toSignUpLink"
+              onClick={props.drawerClose}
+            >
+              登録
+            </Link>
+            する
+          </div>
+        </div>
+      )}
 
       <hr className="partition" />
 
