@@ -16,7 +16,7 @@ export const Card: React.FC<CardProps> = ({ data }) => {
       >
         {data.data.title}
       </h2>
-      <p className="star">☆ Star {data.data.star}</p>
+      <p className="star">★ Star {data.data.star}</p>
       <p className="description">{data.data.description}</p>
     </div>
   );
