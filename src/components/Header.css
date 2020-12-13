@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(30, 30, 80, .3);
+  box-shadow: 0 2px 8px rgba(30, 30, 80, 0.3);
 }
 .logoAndTitle {
   cursor: hand;
@@ -52,7 +52,7 @@
 .createButton {
   margin-left: auto;
   margin-right: auto;
-  margin-top:35px;
+  margin-top: 35px;
   width: 40%;
   max-width: 330px;
 }
@@ -82,4 +82,25 @@
 .searchMapsIcon {
   vertical-align: middle;
   margin-right: 5px;
+}
+
+.drawerNotUser {
+  text-align: center;
+}
+
+.drawerToSignup {
+  margin-top: 8px;
+}
+
+.drawerSigninButton {
+  margin-top: 30px !important;
+  color: var(--cimicine-main) !important;
+  border: 1px solid #088347 !important;
+}
+.toSignUpLink {
+  color: #68a7df;
+}
+
+.toSignUpLink:hover {
+  color: #67bdff;
 }
