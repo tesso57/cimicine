@@ -13,7 +13,7 @@ const Home: React.FC = () => {
       .onSnapshot((snapshot) =>
         setAllRoadmap(snapshot.docs.map((doc) => doc.data()))
       );
-  });
+  }, []);
   return (
     <div className="home">
       <div className={"search"}>
@@ -32,12 +32,21 @@ const Home: React.FC = () => {
           fullWidth={true}
         />
       </div>
-      <h1 style={{ color: "white", margin: "24px 0 16px" }}>
-        👨‍👩‍👧 みんなのロードマップ
+      <h1
+        style={{
+          color: "white",
+          margin: "24px 0 16px",
+          // padding: 4,
+          // backgroundColor: "white",
+        }}
+      >
+        みんなのロードマップ
       </h1>
-      {allRoadmap.map((d, index) => (
-        <Card data={d} key={index} />
-      ))}
+      <div className="home__cardContainer">
+        {allRoadmap.map((d, index) => (
+          <Card data={d} key={index} />
+        ))}
+      </div>
       <h1 style={{ color: "white", margin: "24px 0 0 ", paddingBottom: 16 }}>
         🔥 急上昇中のロードマップ
       </h1>
