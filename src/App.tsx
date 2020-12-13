@@ -12,6 +12,7 @@ import MakeNewLoadMap from "./components/MakeNewLoadMap";
 import Footer from "./components/Footer";
 import NotFound from "./auth/404";
 import ViewRoadmap from "./components/ViewRoadmap";
+import Profile from "./components/Profile";
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <PrivateRoute exact path={"/create"} component={MakeNewLoadMap} />
             <PrivateRoute exact path={"/view"} component={ViewRoadmap} />
             <PrivateRoute path={"/view/:uid"} component={ViewRoadmap} />
+            <PrivateRoute path={"/profile/:displayName"} component={Profile} />
             <PrivateRoute exact path={"/"} component={Home} />
             <Route component={NotFound} />
           </Switch>

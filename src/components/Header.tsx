@@ -14,7 +14,6 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-
 import { useHistory } from "react-router";
 import Dialog from "./Dialog";
 import { auth } from "../firebase/index";
@@ -201,7 +200,14 @@ const Header: React.FC = () => {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={dropDownOpen} id="dropDownMenu">
-                  <MenuItem onClick={handleClose}>マイページ</MenuItem>
+                  <MenuItem
+                    onClick={(i) => {
+                      handleClose(i);
+                      history.push("/profile/" + currentUser.displayName);
+                    }}
+                  >
+                    マイページ
+                  </MenuItem>
                   <MenuItem onClick={signout}>サインアウト</MenuItem>
                 </MenuList>
               </ClickAwayListener>

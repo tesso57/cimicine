@@ -28,7 +28,7 @@ export type UserStaredList = { list: StaredList };
 export type UserType = {
   createdRoadmaps: JsonTypes[]; //あとから編集できるように
   staredList: {
-    roadmap: string; // roadmap uid
+    roadmap: JsonTypes; // roadmap uid
     progress: number;
   }[];
 };
