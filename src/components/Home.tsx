@@ -3,16 +3,19 @@ import React from "react";
 import { db } from "../firebase/index";
 import { Card } from "./Card";
 import "./Home.css";
+import PlaceholderLoading from "./PlaceholderLoading";
 // import TextField from "@material-ui/core/TextField";
 
 const Home: React.FC = () => {
   const [allRoadmap, setAllRoadmap] = React.useState<any[]>([]);
+  const [loaded, setLoaded] = React.useState<boolean>(false);
   React.useEffect(() => {
     db.collection("flows")
       .limit(20)
       .onSnapshot((snapshot) =>
         setAllRoadmap(snapshot.docs.map((doc) => doc.data()))
       );
+    setInterval(() => setLoaded(true), 5000);
   }, []);
   return (
     <div className="home">
@@ -45,10 +48,9 @@ const Home: React.FC = () => {
         🛫 最新ロードマップ
       </h1>
       <div className="home__cardContainer">
-        {allRoadmap.map((d, index) => (
-          // @ts-ignore
-          <Card data={d} key={index} />
-        ))}
+        {allRoadmap.map((d, index) =>
+          loaded ? <Card data={d} key={index} /> : <PlaceholderLoading />
+        )}
       </div>
       {/*<h1 style={{ color: "white", margin: "24px 0 0 ", paddingBottom: 16 }}>*/}
       {/*  🔥 急上昇中のロードマップ*/}
