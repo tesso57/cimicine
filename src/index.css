@@ -10,6 +10,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   --cimicine-main: #007c40;
+  height: 100%;
 }
 
 code {

@@ -2,3 +2,10 @@
   min-height: 100vh;
   position: relative;
 }
+.switch {
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+.footer__push {
+  height: 100px;
+}
