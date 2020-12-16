@@ -5,8 +5,8 @@
   margin-bottom: 16px;
   border-radius: 10px;
   background-color: white;
-  cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 10px;
+  position: relative;
 }
 .card:hover {
   background-color: white;
@@ -31,4 +31,38 @@
 .description {
   font-size: 14px;
   opacity: 0.54;
+}
+
+@keyframes card__cover {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.card__cover {
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.card:hover .card__cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: card__cover 0.3s linear 0s;
+}
+.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 10px;
+}
+.card__divider {
+  height: 36px;
+  margin: 0 16px 0 8px;
+  border-left: 1px solid white;
 }
