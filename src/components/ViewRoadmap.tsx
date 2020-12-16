@@ -11,9 +11,8 @@ import { Star, StarOutline } from "@material-ui/icons";
 import { RouteComponentProps } from "react-router";
 import { db } from "../firebase";
 import { AuthContext } from "../auth/AuthProvider";
-import { Icon } from '@iconify/react';
-import twitterIcon from '@iconify-icons/mdi/twitter';
-
+import { Icon } from "@iconify/react";
+import twitterIcon from "@iconify-icons/mdi/twitter";
 
 type urlProps = {} & RouteComponentProps<{ uid: string }>;
 
@@ -168,10 +167,24 @@ const ViewRoadmap: React.FC<urlProps> = (props) => {
             </div>
           </div>
           <a
-            href={"https://twitter.com/share?ref_src=twsrc%5Etfw&url=https://cimicine-flow.web.app/view/" + data.data.uid}
+            href={
+              "https://twitter.com/share?ref_src=twsrc%5Etfw&url=https://cimicine-flow.web.app/view/" +
+              data.data.uid
+            }
             data-show-count="false"
+            target="_blank"
+            rel="noreferrer"
           >
-            <Icon icon={twitterIcon} style = {{marginTop:30, marginLeft:35,width:50,height:50,color:`#00acee`}}/>
+            <Icon
+              icon={twitterIcon}
+              style={{
+                marginTop: 30,
+                marginLeft: 35,
+                width: 50,
+                height: 50,
+                color: `#00acee`,
+              }}
+            />
           </a>
         </div>
       )}
