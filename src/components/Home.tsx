@@ -15,7 +15,7 @@ const Home: React.FC = () => {
       .onSnapshot((snapshot) =>
         setAllRoadmap(snapshot.docs.map((doc) => doc.data()))
       );
-    setInterval(() => setLoaded(true), 5000);
+    setLoaded(true);
   }, []);
   return (
     <div className="home">
