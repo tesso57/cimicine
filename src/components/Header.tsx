@@ -169,7 +169,8 @@ const Header: React.FC = () => {
                   <MenuItem
                     onClick={(i) => {
                       handleClose(i);
-                      history.push("/profile/" + currentUser.displayName);
+                      currentUser &&
+                        history.push("/profile/" + currentUser.displayName);
                     }}
                   >
                     マイページ
