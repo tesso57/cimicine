@@ -1,9 +1,13 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(30, 30, 80, .3);
+  box-shadow: 0 2px 8px rgba(30, 30, 80, 0.3);
+  min-height: 67px;
+}
+.loggedIn {
+  justify-content: space-between;
 }
 .logoAndTitle {
   cursor: hand;
@@ -52,7 +56,7 @@
 .createButton {
   margin-left: auto;
   margin-right: auto;
-  margin-top:35px;
+  margin-top: 35px;
   width: 40%;
   max-width: 330px;
 }

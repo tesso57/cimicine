@@ -116,8 +116,8 @@ const Header: React.FC = () => {
     }
   };
 
-  return (
-    <div className="header">
+  return currentUser ? (
+    <div className="header loggedIn">
       <IconButton onClick={() => setOpen(true)}>
         <MenuIcon fontSize="large" />
       </IconButton>
@@ -185,6 +185,15 @@ const Header: React.FC = () => {
       <Drawer open={open} anchor="left" onClose={toggleDrawer(false)}>
         <DrawerMenu drawerClose={() => setOpen(false)} />
       </Drawer>
+    </div>
+  ) : (
+    <div className="header">
+      <div className="logoAndTitle" onClick={() => history.push("/")}>
+        <svg viewBox="0 0 500 500" className="logo">
+          <use xlinkHref={`${logo}#logo`} />
+        </svg>
+        <h1 className="title">Cimicine</h1>
+      </div>
     </div>
   );
 };
